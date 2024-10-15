@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { authEndpoints } from "../api";
 import { setToken } from "../../slice/authSlice";
+import { setUser } from "../../slice/profileSlice";
 
 
 // sendotp
@@ -63,8 +64,10 @@ export async function login(email,password,navigate,dispatch){
         }
 
         // setToken
-        dispatch(setToken);
+        dispatch(setToken(result.data.token));
         localStorage.setItem("token",JSON.stringify(result.data.token));
+        dispatch(setUser(result.data.user));
+        localStorage.setItem("user",JSON.stringify(result.data.user));
 
         // success response
         toast.success(result.data.message);
@@ -75,3 +78,16 @@ export async function login(email,password,navigate,dispatch){
     }
     toast.dismiss(tid);
 }
+
+
+// logout
+export function logout(navigate) {
+    return (dispatch) => {
+      dispatch(setToken(null))
+      dispatch(setUser(null))
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+      toast.success("Logged Out")
+      navigate("/")
+    }
+  }

@@ -5,11 +5,12 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import Homepage from "./pages/Homepage";
 import VerifyEmail from "./pages/VerifyEmail";
+import Navbar from "./components/common/Navbar";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen w-screen bg-richblack-900">
-
+      <Navbar />
 
       <Routes>
 
