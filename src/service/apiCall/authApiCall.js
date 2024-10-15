@@ -84,7 +84,7 @@ export async function login(email, password, navigate, dispatch) {
 
     const userImage = result.data.user.image
       ? result.data.user.image
-      : `https://api.dicebear.com/5.x/initials/svg?seed=${result.data.user.name}`;
+      : `https://api.dicebear.com/5.x/initials/svg?seed=${result.data.user.name.split(" ")[0]} ${result.data.user.name.split(" ")[1]}`;
     dispatch(setUser({ ...result.data.user, image: userImage }));
     localStorage.setItem("user", JSON.stringify(result.data.user));
     localStorage.setItem("image", JSON.stringify(userImage));

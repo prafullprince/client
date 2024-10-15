@@ -6,31 +6,47 @@ import { NavbarLinks } from "../../data/navbar-links";
 import { useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
 import ProfileDropdown from "../auth/ProfileDropdown";
+import { Input } from "../ui/input";
 
 function Navbar() {
+
+  // fetch from store
   const { token } = useSelector((state) => state.auth);
+
+  // hook
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // state
   const [confirmationModal, setConfirmationModal] = useState(null);
+  const [search, setSearch] = useState("");
 
+  // matchRoute fn
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
   };
+
+  // search change handler
+  function changeHandler(e) {
+    setSearch(e.target.value);
+  }
 
   return (
     <div
       className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 transition-all duration-200`}
     >
-      <div className="flex w-[90%] md:w-[80%] mx-auto items-center justify-between">
+      <div className="flex w-[90%] md:w-[80%] mx-auto items-center justify-between gap-1">
         {/* Logo */}
-        <Link className="hidden md:block" to="/">
+        <Link
+          className=" w-[80px] h-[32px] mt-3 sm:w-[160px] sm:h-[32px] sm:mt-0"
+          to="/"
+        >
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
         </Link>
 
         {/* Navigation links */}
-        <nav className="">
+        <nav className=" hidden md:block">
           <ul className="flex gap-x-4 text-richblack-25 md:gap-x-6">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
@@ -49,7 +65,18 @@ function Navbar() {
             ))}
           </ul>
         </nav>
-        {/* Login / Signup / Dashboard */}
+
+        {/* Search */}
+        <div>
+          <Input
+            className="bg-richblack-800 border-richblack-900"
+            placeholder="search blog"
+            type="text"
+            name="search"
+            value={search}
+            onChange={changeHandler}
+          />
+        </div>
 
         {/* login signup for big screen */}
         <div className="items-center gap-x-1 hidden md:flex md:gap-x-4">
@@ -108,6 +135,8 @@ function Navbar() {
           </button>
         )}
       </div>
+
+      {/* modal */}
       {confirmationModal && (
         <ConfirmationModal
           modalData={confirmationModal}

@@ -9,7 +9,7 @@ import Navbar from "./components/common/Navbar";
 import MainDashboard from "./pages/MainDashboard";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import MyProfile from "./components/Dashboard/MyProfile";
-import AddBlog from "./components/Dashboard/AddBlog";
+import AddBlog from "./components/Dashboard/Blog/AddBlog";
 import BloggerDashboard from "./components/Dashboard/BloggerDashboard";
 import Setting from "./components/Dashboard/Setting";
 

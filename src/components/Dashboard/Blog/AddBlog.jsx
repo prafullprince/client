@@ -2,7 +2,9 @@ import React from 'react'
 
 function AddBlog() {
   return (
-    <div className=' text-white'>AddBlog</div>
+    <div className=' text-white'>
+      Add Blog
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import { cn } from "../../lib/utils";
 // import , { LinkProps } from "next/link";
-import { Link,LinkProps } from "react-router-dom";
+import { Link,LinkProps, useLocation } from "react-router-dom";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CiMenuBurger } from "react-icons/ci";
@@ -90,7 +90,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-full px-4 py-4 hidden  md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] flex-shrink-0",
+          "h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] flex-shrink-0",
           className
         )}
         animate={{
@@ -137,12 +137,12 @@ export const MobileSidebar = ({
                 ease: "easeInOut",
               }}
               className={cn(
-                "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
+                "fixed h-full w-full inset-0 dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between mt-4",
                 className
               )}
             >
               <div
-                className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
+                className={`absolute right-16 top-[53px] z-50 text-neutral-800 dark:text-neutral-200`}
                 onClick={() => setOpen(!open)}
               >
                 <RiRemixiconLine />
@@ -166,11 +166,12 @@ export const SidebarLink = ({
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
+  const location = useLocation();
   return (
     <Link
       to={link.href}
       className={cn(
-        "flex items-center justify-start gap-2  group/sidebar py-2 text-white",
+        `flex items-center justify-start gap-3 group/sidebar py-2 text-lg text-white ${link.href === location.pathname ? " text-yellow-100" : ""}`,
         className
       )}
       {...props}
@@ -182,9 +183,11 @@ export const SidebarLink = ({
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-white dark:text-white text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        className={`text-white ${link.href === location.pathname ? "text-yellow-100" : ""} dark:text-white text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0`}
       >
-        {link.label}
+        <div className={`${link.href === location.pathname ? "text-yellow-100" : ""}`}>
+          {link.label}
+        </div>
       </motion.span>
     </Link>
   );
