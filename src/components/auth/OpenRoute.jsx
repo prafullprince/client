@@ -1,21 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function OpenRoute({ children }) {
-  const navigate = useNavigate();
-  const token = useSelector((state) => state.auth?.token);
-
-  useEffect(() => {
-    if (token !== null) {
-      navigate("/"); // Navigate after the component renders
-    }
-  }, [token, navigate]);
+  const token = useSelector((state) => state.auth.token);
 
   if (token === null) {
     return children;
   } else {
-    return <Navigate to={"/"} />; // Don't render children when navigating away
+    return <Navigate to={"/dashboard/my-profile"} />; // Don't render children when navigating away
   }
 }
 

@@ -1,5 +1,5 @@
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
@@ -11,6 +11,7 @@ function Navbar() {
   const { token } = useSelector((state) => state.auth);
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [confirmationModal, setConfirmationModal] = useState(null);
 
@@ -27,6 +28,7 @@ function Navbar() {
         <Link className="hidden md:block" to="/">
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
         </Link>
+
         {/* Navigation links */}
         <nav className="">
           <ul className="flex gap-x-4 text-richblack-25 md:gap-x-6">
@@ -53,14 +55,22 @@ function Navbar() {
         <div className="items-center gap-x-1 hidden md:flex md:gap-x-4">
           {token === null && (
             <Link to="/login">
-              <button className="rounded-[8px] border px-1 py-1 border-richblack-700 bg-richblack-800 md:px-[12px] md:py-[8px] text-richblack-100">
+              <button
+                className={`rounded-[8px] ${
+                  matchRoute("/login") ? " bg-yellow-5 text-richblack-900" : ""
+                } border px-1 py-1 border-richblack-700 bg-richblack-800 md:px-[12px] md:py-[8px] text-richblack-100 shadow-sm shadow-blue-50`}
+              >
                 Log in
               </button>
             </Link>
           )}
           {token === null && (
             <Link to="/signup">
-              <button className="rounded-[8px] border px-1 py-1 border-richblack-700 bg-richblack-800 md:px-[12px] md:py-[8px] text-richblack-100">
+              <button
+                className={`rounded-[8px] ${
+                  matchRoute("/signup") ? " bg-yellow-5 text-richblack-900" : ""
+                } border px-1 py-1 border-richblack-700 bg-richblack-800 md:px-[12px] md:py-[8px] text-richblack-100 shadow-sm shadow-blue-50`}
+              >
                 Sign up
               </button>
             </Link>
@@ -68,7 +78,9 @@ function Navbar() {
         </div>
 
         {/* when user loggedIn */}
-        {token !== null && <ProfileDropdown />}
+        {token !== null && (
+          <ProfileDropdown navigate={navigate} dispatch={dispatch} />
+        )}
 
         {/* signup login for mobile screen */}
         {token === null && (
@@ -80,14 +92,14 @@ function Navbar() {
                   text2: "Where you want to go",
                   btn1Text: "Signup",
                   btn2Text: "Login",
-                  btn1Handler:()=>{
+                  btn1Handler: () => {
                     navigate("/signup");
                     setConfirmationModal(null);
                   },
-                  btn2Handler:()=>{
+                  btn2Handler: () => {
                     navigate("/login");
                     setConfirmationModal(null);
-                  }
+                  },
                 });
               }}
               fontSize={24}
@@ -95,7 +107,6 @@ function Navbar() {
             />
           </button>
         )}
-
       </div>
       {confirmationModal && (
         <ConfirmationModal

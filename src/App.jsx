@@ -6,6 +6,12 @@ import LoginPage from "./pages/LoginPage";
 import Homepage from "./pages/Homepage";
 import VerifyEmail from "./pages/VerifyEmail";
 import Navbar from "./components/common/Navbar";
+import MainDashboard from "./pages/MainDashboard";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import MyProfile from "./components/Dashboard/MyProfile";
+import AddBlog from "./components/Dashboard/AddBlog";
+import BloggerDashboard from "./components/Dashboard/BloggerDashboard";
+import Setting from "./components/Dashboard/Setting";
 
 function App() {
   return (
@@ -43,6 +49,14 @@ function App() {
             <VerifyEmail />
           </OpenRoute>
         } />
+
+        {/* private route */}
+        <Route element={<PrivateRoute><MainDashboard /></PrivateRoute>}>
+            <Route path="dashboard/my-profile" element={<MyProfile />} />
+            <Route path="dashboard/add-blog" element={<AddBlog />} />
+            <Route path="dashboard/blogger" element={<BloggerDashboard />}/>
+            <Route path="dashboard/settings" element={<Setting />} />
+        </Route>
 
       </Routes>
 

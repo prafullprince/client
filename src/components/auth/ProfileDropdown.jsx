@@ -4,26 +4,28 @@ import ProfileDropDownConModal from './ProfileDropDownConModal';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../service/apiCall/authApiCall';
 import ConfirmationModal from "../common/ConfirmationModal";
+import { useSelector } from 'react-redux';
 
-function ProfileDropdown() {
+function ProfileDropdown({navigate,dispatch}) {
 
-    const navigate = useNavigate();
-    const dispatch = useNavigate();
+    // const navigate = useNavigate();
+    // const dispatch = useNavigate();
 
     const [profileDropDownModal,setProfileDropDownModal] = useState(null);
     const [confirmationModal,setConfirmationModal] = useState(null);
 
+    const { image } = useSelector((state)=>state.profile);
 
   return (
-    <div className='flex items-center gap-x-1 md:gap-x-3 text-white'>
+    <div className='flex items-center gap-x-1 md:gap-x-4 text-white'>
         {/* dashboard */}
         <div className='hidden md:block md:gap-x-2'>
-            <Link className='px-4 rounded-lg shadow-sm shadow-blue-5 py-2 bg-richblack-800' to={"/dashboard/my-profile"}>
+            <Link className='px-4 rounded-lg shadow-sm shadow-blue-100 py-[8px] bg-richblack-800 hidden md:block' to={"/dashboard/my-profile"}>
                 Dashboard
             </Link>
         </div>
-        {/* profile */}
-          <button className='px-4 hidden md:block rounded-lg shadow-sm shadow-blue-100 py-2 bg-richblack-800' onClick={()=>{
+        {/* Logout */}
+          <button className='hidden md:block' onClick={()=>{
             setConfirmationModal({
                 text1: "Are you sure?",
                 text2: "You will be logged out",
@@ -33,7 +35,7 @@ function ProfileDropdown() {
                 btn2Handler:()=>setConfirmationModal(null)
             });
           }}>
-              Logout
+              <img className=' rounded-full w-8 h-8' src={image} />
           </button>
         {/* mobile size profileDropDown */}
         <button className="text-white md:hidden">
@@ -51,8 +53,11 @@ function ProfileDropdown() {
           </button>
 
           {
-            profileDropDownModal ? <ProfileDropDownConModal modalData={profileDropDownModal} setModalData={setProfileDropDownModal} /> :
-            confirmationModal ? <ConfirmationModal modalData={confirmationModal} setModalData={setConfirmationModal} /> : null
+            confirmationModal && <ConfirmationModal modalData={confirmationModal} />
+          }
+
+          {
+            profileDropDownModal && <ProfileDropDownConModal modalData={profileDropDownModal} setModalData={setProfileDropDownModal} />
           }
 
     </div>

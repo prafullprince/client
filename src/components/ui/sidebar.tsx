@@ -1,10 +1,10 @@
-"use client";
 import { cn } from "../../lib/utils";
 // import , { LinkProps } from "next/link";
 import { Link,LinkProps } from "react-router-dom";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { CiMenuBurger } from "react-icons/ci";
+import { RiRemixiconLine } from "react-icons/ri";
 
 interface Links {
   label: string;
@@ -121,7 +121,7 @@ export const MobileSidebar = ({
         {...props}
       >
         <div className="flex justify-end z-20 w-full">
-          <IconMenu2
+          <CiMenuBurger
             className="text-neutral-800 dark:text-neutral-200"
             onClick={() => setOpen(!open)}
           />
@@ -145,7 +145,7 @@ export const MobileSidebar = ({
                 className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
                 onClick={() => setOpen(!open)}
               >
-                <IconX />
+                <RiRemixiconLine />
               </div>
               {children}
             </motion.div>
@@ -170,7 +170,7 @@ export const SidebarLink = ({
     <Link
       to={link.href}
       className={cn(
-        "flex items-center justify-start gap-2  group/sidebar py-2",
+        "flex items-center justify-start gap-2  group/sidebar py-2 text-white",
         className
       )}
       {...props}
@@ -182,7 +182,7 @@ export const SidebarLink = ({
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        className="text-white dark:text-white text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
       >
         {link.label}
       </motion.span>
