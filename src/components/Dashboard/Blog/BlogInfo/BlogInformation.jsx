@@ -95,7 +95,7 @@ function BlogInformation() {
             {/* <Input className='bg-[#2C333F] text-[#999DAA] h-12 text-base' type='text' id='cat' placeholder='Select Blog Category' list='options' /> */}
             <select
               id="options" name="category"
-              value={category}
+              value={formData.category}
               onChange={formChangeHandler}
               className="bg-[#2C333F] text-[#dddee2] h-12 text-base p-2 outline-none rounded-md"
             >
