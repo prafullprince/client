@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coreui/coreui": "^5.1.2",
+    "@coreui/react": "^5.4.0",
     "@radix-ui/react-label": "^2.1.0",
     "@reduxjs/toolkit": "^2.2.8",
     "@tabler/icons-react": "^3.19.0",
