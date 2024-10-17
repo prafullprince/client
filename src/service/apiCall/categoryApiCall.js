@@ -14,7 +14,6 @@ export async function fetchAllCategory(){
             toast.error("Category not fetched");
         }
 
-        toast.success("Category fetched successfully");
         res = result?.data?.data;
 
     } catch (error) {

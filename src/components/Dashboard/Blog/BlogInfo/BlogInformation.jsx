@@ -53,7 +53,7 @@ function BlogInformation() {
     <div className="text-white">
       {/* layout */}
       <form onSubmit={submitHandler}>
-        <div className="mt-6 border border-[#2C333F] bg-[#161D29] rounded-md p-6 flex flex-col gap-6">
+        <div className="m-6 border border-[#2C333F] bg-[#161D29] rounded-md p-6 flex flex-col gap-6">
           {/* Title */}
           <div className="flex gap-[6px] w-full flex-col">
             <Label htmlFor="title">
@@ -114,11 +114,11 @@ function BlogInformation() {
               imgRef.current.click();
             }}
           >
-            <Label htmlFor="image">
+            <Label className="mb-1 text-sm" htmlFor="image">
               Thumbnail<sup className="ml-1 text-richblack-100 text-xs">*</sup>
             </Label>
             {thumbnail ? (
-              <img src={URL.createObjectURL(thumbnail)} />
+              <img className="border-[0px] rounded-lg" src={URL.createObjectURL(thumbnail)} />
             ) : (
               <div className="z-10 relative">
                 <img

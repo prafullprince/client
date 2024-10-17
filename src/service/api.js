@@ -18,5 +18,7 @@ export const categoryEndpoints = {
 }
 
 export const blogEndpoints = {
-    CREATE_BLOG:BASE_URL + "/blog/createBlog",
+    CREATE_BLOG: BASE_URL + "/blog/createBlog",
+    CREATE_SECTION: BASE_URL + "/blog/createSection",
+    CREATE_SUBSECTION : BASE_URL + "/blog/createSubSection"
 }

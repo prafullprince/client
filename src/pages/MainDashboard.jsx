@@ -10,6 +10,7 @@ import { BiLogOut } from "react-icons/bi";
 import logoS from "../assets/Logo/Logo-Small-Light.png";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "../helper/constant";
+import { RiFolderAddLine } from "react-icons/ri";
 
 export default function MainDashboard() {
   // fetch from store
@@ -37,7 +38,7 @@ export default function MainDashboard() {
       label: "Add Blog",
       href: "/dashboard/add-blog",
       icon: (
-        <VscAccount className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <RiFolderAddLine className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
       type: ACCOUNT_TYPE.BLOGGER,
     },
