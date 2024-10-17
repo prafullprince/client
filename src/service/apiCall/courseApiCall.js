@@ -100,3 +100,32 @@ export async function createSubSection(body,blogId,sectionId,token,dispatch){
     return res;
 }
 
+
+// updateBlog
+export async function publishBlog(blogId,status,token,dispatch){
+    const tid = toast.loading("...Loading");
+    try {
+        // fetch apiCall
+        const result = await apiConnector("PUT",blogEndpoints.PUBLISH_BLOG,{blogId,status},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+        
+        // validation
+        if(!result.data.success){
+            throw new Error("Published failed");
+        }
+
+        // resetBlog
+        dispatch(setBlog(null));
+        dispatch(setStep(1));
+        localStorage.removeItem("step");
+        localStorage.removeItem("blog");
+        toast.success(`blog ${result.data.updatedBlog.status}`);
+
+    } catch (error) {
+        console.log(error);
+    }
+    toast.dismiss(tid);
+}
+
