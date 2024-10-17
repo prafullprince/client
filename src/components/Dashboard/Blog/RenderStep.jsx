@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 function RenderStep({ste}) {
 
-    const { step } = useSelector((state)=>state.blog);
+    const { step } = useSelector((state)=>state.blogs);
 
 
   return (

@@ -7,7 +7,7 @@ export const store = configureStore({
     reducer:{
         auth:authSlice,
         profile:profileSlice,
-        blog:blogSlice
+        blogs:blogSlice
     }
 });
 

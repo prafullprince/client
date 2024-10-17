@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     step: localStorage.getItem("step") ? JSON.parse(localStorage.getItem("step")) : 1,
-    blog: null,
+    blog: localStorage.getItem("blog") ? JSON.parse(localStorage.getItem("blog")) : null,
 }
 
 const blogSlice = createSlice({
-    name:"blog",
+    name:"blogs",
     initialState:initialState,
     reducers:{
         setStep(state,action){

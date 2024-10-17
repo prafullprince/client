@@ -12,8 +12,8 @@ import { MdAdd } from 'react-icons/md';
 function AddBlog() {
 
   // fetch data from store
-  const { step } = useSelector((state)=>state.blog);
-  localStorage.setItem("step",JSON.stringify(2));
+  const { step } = useSelector((state)=>state.blogs);
+  localStorage.setItem("step",JSON.stringify(step));
 
   // hook
   const dispatch = useDispatch();
