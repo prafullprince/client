@@ -11,9 +11,12 @@ const profileSlice = createSlice({
     initialState:initialState,
     reducers:{
         setUser(state,action){
-            state.token = action.payload;
+            state.user = action.payload;
         },
+        setImage(state,action){
+            state.image = action.payload;
+        }
     }
 });
-export const { setUser } = profileSlice.actions;
+export const { setUser,setImage } = profileSlice.actions;
 export default profileSlice.reducer;

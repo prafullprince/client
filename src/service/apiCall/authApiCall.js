@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { authEndpoints } from "../api";
 import { setToken } from "../../slice/authSlice";
-import { setUser } from "../../slice/profileSlice";
+import { setImage, setUser } from "../../slice/profileSlice";
 
 // sendotp
 export async function sendOtp(email, navigate) {
@@ -86,6 +86,7 @@ export async function login(email, password, navigate, dispatch) {
       ? result.data.user.image
       : `https://api.dicebear.com/5.x/initials/svg?seed=${result.data.user.name.split(" ")[0]} ${result.data.user.name.split(" ")[1]}`;
     dispatch(setUser({ ...result.data.user, image: userImage }));
+    dispatch(setImage(userImage));
     localStorage.setItem("user", JSON.stringify(result.data.user));
     localStorage.setItem("image", JSON.stringify(userImage));
 

@@ -1,20 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import IconBtn from "../common/IconBtn";
 import { FiEdit, FiEdit2 } from "react-icons/fi";
 import { FaCheck, FaEdit } from "react-icons/fa";
 import { updateProfilePic } from "../../service/apiCall/profileApiCall";
 import { Link } from "react-router-dom";
+import { setImage, setUser } from "../../slice/profileSlice";
+import { setToken } from "../../slice/authSlice";
 
 function MyProfile() {
   // fetch data from store
   const { user } = useSelector((state) => state.profile);
   const { image } = useSelector((state)=> state.profile);
   const { token } = useSelector((state)=> state.auth);
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const image = JSON.parse(localStorage.getItem("image"));
+  // const token = JSON.parse(localStorage.getItem("token"));
 
   // hook
   const imgRef = useRef(null);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(setUser(user));
+    dispatch(setToken(token));
+    dispatch(setImage(image));
+  });
 
   // state
   const [imageFile,setImageFile] = useState(null);
