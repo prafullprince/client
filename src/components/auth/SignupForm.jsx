@@ -45,7 +45,7 @@ export default function SignupForm() {
     dispatch(setSignUpData(signupData));
 
     // sendOtp apiCall
-    sendOtp(formData.email,navigate);
+    await sendOtp(formData.email,navigate);
 
   };
 
