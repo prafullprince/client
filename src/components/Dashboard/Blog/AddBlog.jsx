@@ -39,18 +39,18 @@ function AddBlog() {
       {/* layout */}
       <div className='flex flex-col gap-6 md:w-[70%]'>
         {/* render */}
-        <header className='text-[#838894] text-sm flex gap-4 items-center cursor-pointer'>
-          <Link to={"/dashboard/blogger"} className='flex gap-2 items-center'>
+        <header className='text-[#838894] text-sm md:flex gap-4 items-center cursor-pointer mx-6'>
+          <Link to={"/dashboard/blogger"} className='flex gap-2 items-center w-fit'>
             <FaLessThan />
             <p>Back to Dashboard</p>
           </Link>
-          <button onClick={()=>{dispatch(setStep(1))}} className='flex gap-1 items-center text-yellow-50'>
+          <button onClick={()=>{dispatch(setStep(1))}} className='flex gap-1 items-center text-yellow-50 w-fit'>
             <MdAdd />
             <p>Create New Blog</p>
           </button>
         </header>
         {/* renderSteps */}
-        <nav className='relative flex justify-between w-full mx-auto'>
+        <nav className='relative flex justify-between w-full mx-2'>
           {
             steps.map((ste,index)=>(
               <RenderStep ste={ste} key={index} />

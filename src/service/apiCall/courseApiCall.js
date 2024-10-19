@@ -129,3 +129,26 @@ export async function publishBlog(blogId,status,token,dispatch){
     toast.dismiss(tid);
 }
 
+// searchBlog
+export async function searchBlog(query){
+    const tid = toast.loading("...Loading");
+    let res = [];
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.SEARCH_BLOG,null,null,{query});
+        
+        // validation
+        if(!result.data.success){
+            throw new Error("Published failed");
+        }
+
+        // update res
+        res = result.data.matchedBlog;
+
+    } catch (error) {
+        console.log(error);
+    }
+    toast.dismiss(tid);
+    return res;
+}
+

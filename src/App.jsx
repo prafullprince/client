@@ -12,6 +12,7 @@ import MyProfile from "./components/Dashboard/MyProfile";
 import AddBlog from "./components/Dashboard/Blog/AddBlog";
 import BloggerDashboard from "./components/Dashboard/BloggerDashboard";
 import Setting from "./components/Dashboard/Setting";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
         {/* homepage */}
         <Route path="/" element={<Homepage />} />
+        <Route path="/blog/:blogId" element={<BlogDetails />} />
 
         {/* signup route */}
         <Route
