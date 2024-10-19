@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Spotlight } from '../components/ui/Spotlight'
+import { fetchAllBlogs } from '../service/apiCall/courseApiCall';
+import BlogCard from '../components/common/BlogCard';
+import { OverlayBlogCard } from '../components/common/OverlayBlogCard';
 
 function Homepage() {
+
+  const [blogs,setBlogs] = useState([]);
+
+  useEffect(()=>{
+    async function fetchAllBlog(){
+      const response = await fetchAllBlogs();
+      setBlogs(response);
+    }
+    fetchAllBlog();
+  },[]);
+
   return (
     <div className='text-white relative min-h-screen'>
       <div className='w-[90%] mx-auto md:w-[80%]'>
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="white"
-        />
+        <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-4 my-8'>
+          {
+            blogs.map((blog)=>(
+              <OverlayBlogCard blog={blog} key={blog._id} />
+            ))
+          }
+        </div>
       </div>
     </div>
   )
 }
 
 export default Homepage
+{/* <BlogCard blog={blog} key={blog._id} styleFlex={false} /> */}

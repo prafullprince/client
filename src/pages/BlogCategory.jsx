@@ -36,7 +36,7 @@ function BlogCategory() {
                 blogs !== null ? (<div className='flex flex-col gap-6 mt-6'>
                     {
                         blogs.map((blog)=>(
-                        <BlogCard key={blog._id} blog={blog} />
+                        <BlogCard key={blog._id} blog={blog} styleFlex={true} />
                 ))
                     }
                 </div>) : (<div>No Blog Found</div>)

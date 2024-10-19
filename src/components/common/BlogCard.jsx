@@ -1,11 +1,11 @@
 import React from 'react'
 
-function BlogCard({blog}) {
+function BlogCard({blog,styleFlex}) {
   return (
     <div className=''>
-        <div className='lg:flex-row lg:gap-4 flex flex-col gap-4'>
-            <div className='lg:w-[70%]'>
-                <img src={blog.thumbnail} className='w-full h-full max-h-[300px] lg:w-full lg:h-[350px] aspect-square rounded-lg' />
+        <div className={`${styleFlex ? "lg:flex-row lg:gap-4 flex flex-col gap-4" : "flex flex-col gap-4"}`}>
+            <div className={`${styleFlex ? "lg:w-[70%]" : ""}`}>
+                <img src={blog.thumbnail} className={`w-full h-full ${ styleFlex ? "max-h-[300px]" : "max-h-[200px]" } lg:w-full lg:h-[350px] aspect-square rounded-lg`} />
             </div>
             <div className='w-full p-1 flex flex-col gap-2'>
                 <h2>{blog.name}</h2>
@@ -22,7 +22,9 @@ function BlogCard({blog}) {
                 {/* like & comment */}
                 {/* ratingAndReviews */}
                 {/* createdAt */}
-                <p className=' text-richblack-25 text-sm'>Created At: <span className=' text-yellow-50'>{blog.createdAt.split("T")[0]}</span></p>
+                {
+                    styleFlex ? <p className=' text-richblack-25 text-sm'>Created At: <span className=' text-yellow-50'>{blog.createdAt.split("T")[0]}</span></p> : <p></p>
+                }
             </div>
         </div>
     </div>

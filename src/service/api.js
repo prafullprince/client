@@ -22,5 +22,6 @@ export const blogEndpoints = {
     CREATE_SECTION: BASE_URL + "/blog/createSection",
     CREATE_SUBSECTION : BASE_URL + "/blog/createSubSection",
     PUBLISH_BLOG : BASE_URL + "/blog/updateBlog",
-    SEARCH_BLOG: BASE_URL + "/blog/searchBlogApi"
+    SEARCH_BLOG: BASE_URL + "/blog/searchBlogApi",
+    FETCH_ALL_BLOG: BASE_URL + "/blog/getAllBlogs"
 }

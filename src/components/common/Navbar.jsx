@@ -154,7 +154,7 @@ function Navbar() {
                     {
                       categories?.filter((category)=>category.blogs.length > 0 )?.map(
                         (category)=>(
-                          <Link to={`/catalog/${category.name.split(" ").join("-").toLowerCase()}`} className="px-3 py-2 hover:bg-richblack-700 hover:text-white rounded-lg transition-all duration-200">{category.name}</Link>
+                          <Link key={category._id} to={`/catalog/${category.name.split(" ").join("-").toLowerCase()}`} className="px-3 py-2 hover:bg-richblack-700 hover:text-white rounded-lg transition-all duration-200">{category.name}</Link>
                         )
                       )
                     }

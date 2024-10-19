@@ -150,3 +150,23 @@ export async function searchBlog(query){
     return res;
 }
 
+// Get All Blogs
+export async function fetchAllBlogs(){
+    let res = [];
+    try {
+        // fetch apiCall
+        const result = await apiConnector("GET",blogEndpoints.FETCH_ALL_BLOG);
+        
+        // validation
+        if(!result.data.success){
+            throw new Error("Published failed");
+        }
+
+        // update res
+        res = result.data.AllBlogs;
+
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
