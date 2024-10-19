@@ -18,7 +18,7 @@ export function OverlayBlogCard({blog}) {
             width="100"
             alt="Avatar"
             src={blog?.blogger?.image}
-            className="h-10 w-10 rounded-full border-2 object-cover"
+            className="h-10 w-10 rounded-full border-2 border-caribbeangreen-600 object-cover"
           />
           <div className="flex flex-col">
             <p className="font-normal text-base text-gray-50 relative z-10">

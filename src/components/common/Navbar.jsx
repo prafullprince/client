@@ -123,7 +123,7 @@ function Navbar() {
               onBlur={handleBlur}
             />
             {dropDown && result.length > 0 && (
-              <div className="absolute z-10 bg-white border border-gray-300 rounded mt-1 lg:w-[300px] shadow-lg max-h-60 overflow-auto flex flex-col">
+              <div className="absolute z-50 bg-white border border-gray-300 rounded mt-1 lg:w-[300px] shadow-lg max-h-60 overflow-auto flex flex-col">
                 {result.map((blog) => (
                   <Link
                     onClick={() => {
