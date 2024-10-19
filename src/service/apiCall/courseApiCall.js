@@ -131,7 +131,6 @@ export async function publishBlog(blogId,status,token,dispatch){
 
 // searchBlog
 export async function searchBlog(query){
-    const tid = toast.loading("...Loading");
     let res = [];
     try {
         // fetch apiCall
@@ -148,7 +147,6 @@ export async function searchBlog(query){
     } catch (error) {
         console.log(error);
     }
-    toast.dismiss(tid);
     return res;
 }
 

@@ -13,6 +13,9 @@ import AddBlog from "./components/Dashboard/Blog/AddBlog";
 import BloggerDashboard from "./components/Dashboard/BloggerDashboard";
 import Setting from "./components/Dashboard/Setting";
 import BlogDetails from "./pages/BlogDetails";
+import BlogCategory from "./pages/BlogCategory";
+import CatalogPage from "./pages/CatalogPage";
+
 
 function App() {
   return (
@@ -23,7 +26,11 @@ function App() {
 
         {/* homepage */}
         <Route path="/" element={<Homepage />} />
-        <Route path="/blog/:blogId" element={<BlogDetails />} />
+        <Route path="/blog/details/:blogId" element={<BlogDetails />} />
+        {/* <Route path="/blog/list?v=category" element={<BlogCategory />} /> */}
+        <Route path="/blog/list" element={<BlogCategory />} />
+        <Route path="/catalog/:catalogName" element={<CatalogPage />} />
+
 
         {/* signup route */}
         <Route
