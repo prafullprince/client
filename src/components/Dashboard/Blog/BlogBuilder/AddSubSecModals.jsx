@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 function AddSubSecModals({addSubSecModal,setAddSubSecModal}) {
 
     const [body,setBody] = useState("");
+    const [imageUrl,setImageUrl] = useState(null);
 
     const { token } = useSelector((state)=>state.auth);
     const dispatch = useDispatch();
 
     async function submitHandler(e){
         e.preventDefault();
-        await createSubSection(body,addSubSecModal.blogId,addSubSecModal.sectionId,token,dispatch);
+        await createSubSection(body,addSubSecModal.blogId,addSubSecModal.sectionId,imageUrl,token,dispatch);
         setAddSubSecModal(null);
     }
 
@@ -25,16 +26,27 @@ function AddSubSecModals({addSubSecModal,setAddSubSecModal}) {
           Add SubSection
         </p>
         <div className='flex flex-col gap-3 items-start w-full'>
-            <Label>Write content of current topic/section</Label>
-            <textarea
-                required
-                className=' bg-richblack-900 px-2 py-1 w-full h-32 md:h-60 outline-none rounded-lg' 
-                type='text'
-                name='body'
-                placeholder='Write content here'
-                value={body}
-                onChange={(e)=>{setBody(e.target.value)}}
-            />
+            <div>
+              <Label>Write content of current topic/section</Label>
+              <textarea
+                  required
+                  className=' bg-richblack-900 px-2 py-1 w-full h-32 md:h-60 outline-none rounded-lg' 
+                  type='text'
+                  name='body'
+                  placeholder='Write content here'
+                  value={body}
+                  onChange={(e)=>{setBody(e.target.value)}}
+              />
+            </div>
+            <div>
+              <input
+                    required
+                    className=' bg-richblack-900 px-2 py-1 w-full h-32 md:h-60 outline-none rounded-lg' 
+                    type='file'
+
+                    onChange={(e)=>{setImageUrl(e.target.files[0])}}
+                />
+            </div>
         </div>
         <div className="flex items-center gap-x-4">
           <button

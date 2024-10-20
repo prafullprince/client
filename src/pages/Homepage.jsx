@@ -19,7 +19,7 @@ function Homepage() {
   return (
     <div className='text-white relative min-h-screen'>
       <div className='w-[90%] mx-auto md:w-[80%]'>
-        <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-4 my-8'>
+        <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3 my-8'>
           {
             blogs.map((blog)=>(
               <OverlayBlogCard blog={blog} key={blog._id} />

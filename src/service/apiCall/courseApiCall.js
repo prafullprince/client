@@ -70,12 +70,12 @@ export async function createSection(name,blogId,token,dispatch){
 
 
 // createSubSection
-export async function createSubSection(body,blogId,sectionId,token,dispatch){
+export async function createSubSection(body,blogId,sectionId,imageUrl,token,dispatch){
     const tid = toast.loading("...Loading");
     let res = [];
     try {
         // apiCall
-        const result = await apiConnector("POST",blogEndpoints.CREATE_SUBSECTION,{body,blogId,sectionId},
+        const result = await apiConnector("POST",blogEndpoints.CREATE_SUBSECTION,{body,blogId,sectionId,imageUrl},
             {
                 "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${token}`,
@@ -164,6 +164,28 @@ export async function fetchAllBlogs(){
 
         // update res
         res = result.data.AllBlogs;
+
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
+
+
+// Get All Blogs
+export async function fetchAllBlogsDeatils(blogId){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.FETCH_BLOG_DETAILS,{blogId});
+        
+        // validation
+        if(!result.data.success){
+            throw new Error("Published failed");
+        }
+
+        // update res
+        res = result.data.blogDetails;
 
     } catch (error) {
         console.log(error);

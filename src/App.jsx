@@ -26,7 +26,7 @@ function App() {
 
         {/* homepage */}
         <Route path="/" element={<Homepage />} />
-        <Route path="/blog/details/:blogId" element={<BlogDetails />} />
+        <Route path="/blogDetails/:blogId" element={<BlogDetails />} />
         {/* <Route path="/blog/list?v=category" element={<BlogCategory />} /> */}
         <Route path="/blog/list" element={<BlogCategory />} />
         <Route path="/catalog/:catalogName" element={<CatalogPage />} />
