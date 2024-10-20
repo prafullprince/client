@@ -7,7 +7,7 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import logo from "../../assets/Logo/Logo-small-Light.png";
+import logo from "../../assets/Logo/Logo-Small-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useEffect, useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
