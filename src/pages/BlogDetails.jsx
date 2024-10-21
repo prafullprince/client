@@ -6,23 +6,28 @@ import { IoTimeOutline } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { ShootingStars } from "../components/ui/shooting-stars";
 import { StarsBackground } from "../components/ui/stars-background";
+import Spinner from "../components/extraUi/Spinner";
 
 
 function BlogDetails() {
   const { blogId } = useParams();
 
   const [blogDetails, setBlogDetails] = useState(null);
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchBlogDetails() {
+      setLoading(true);
       const response = await fetchAllBlogsDeatils(blogId);
       console.log(response);
       setBlogDetails(response);
+      setLoading(false);
     }
     fetchBlogDetails();
   }, []);
 
-  console.log(blogDetails?.thumbnail);
+
+  if(loading) return <Spinner />
 
   return (
     <div className="text-white relative pb-12">
@@ -103,7 +108,7 @@ function BlogDetails() {
                         {
                           section?.subSection?.map((subSec,index)=>(
                             <div className="py-2 flex flex-col w-full" key={subSec._id}>
-                                <img className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[59%] ml-2 h-[350px] aspect-auto" src={subSec?.imageUrl} />
+                                <img className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[59%] ml-2 h-[400px] aspect-auto" src={subSec?.imageUrl} />
                                 <div className="lg:w-[100%] break-words py-2 relative">
                                   <p className="px-4 mt-3 lg:w-[60%] text-clip text-wrap text-[#C5C7D4]">{`->  `}{subSec?.body}</p>
                                 </div>

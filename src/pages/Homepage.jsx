@@ -3,18 +3,24 @@ import { Spotlight } from '../components/ui/Spotlight'
 import { fetchAllBlogs } from '../service/apiCall/courseApiCall';
 import BlogCard from '../components/common/BlogCard';
 import { OverlayBlogCard } from '../components/common/OverlayBlogCard';
+import Spinner from '../components/extraUi/Spinner';
 
 function Homepage() {
 
   const [blogs,setBlogs] = useState([]);
+  const [loading,setLoading] = useState(false);
 
   useEffect(()=>{
     async function fetchAllBlog(){
+      setLoading(true);
       const response = await fetchAllBlogs();
       setBlogs(response);
+      setLoading(false);
     }
     fetchAllBlog();
   },[]);
+
+  if(loading) return <Spinner />
 
   return (
     <div className='text-white relative min-h-screen'>
