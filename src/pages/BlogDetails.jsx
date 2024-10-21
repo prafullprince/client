@@ -84,7 +84,7 @@ function BlogDetails() {
             <div className="flex flex-col gap-3">
               <div className="text-white font-semibold text-2xl">Course Content</div>
               <div className="text-[#C5C7D4] text-sm flex gap-2">
-                10 sections
+                {blogDetails?.totalSections} sections
               </div>
             </div>
             {/* nested content */}
