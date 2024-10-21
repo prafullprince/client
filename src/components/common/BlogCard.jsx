@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function BlogCard({blog,styleFlex}) {
   return (
-    <div className=''>
+    <Link to={`/blogDetails/${blog._id}`} className=''>
         <div className={`${styleFlex ? "lg:flex-row lg:gap-4 flex flex-col gap-4" : "flex flex-col gap-4"}`}>
             <div className={`${styleFlex ? "lg:w-[70%]" : ""}`}>
                 <img src={blog.thumbnail} className={`w-full h-full ${ styleFlex ? "max-h-[300px]" : "max-h-[200px]" } lg:w-full lg:h-[350px] aspect-square rounded-lg`} />
@@ -27,7 +28,7 @@ function BlogCard({blog,styleFlex}) {
                 }
             </div>
         </div>
-    </div>
+    </Link>
   )
 }
 
