@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { blogEndpoints } from "../api";
-import { setBlog, setStep } from "../../slice/blogSlice";
+import { setBlog, setLikeKey, setStep } from "../../slice/blogSlice";
 
 
 // createBlog
@@ -196,7 +196,6 @@ export async function fetchAllBlogsDeatils(blogId){
 
 // Views increament
 export async function increaseViews(blogId){
-    res = null;
     try {
         // fetch apiCall
         const result = await apiConnector("PUT",blogEndpoints.CREATE_VIEWS,{blogId});
@@ -206,18 +205,14 @@ export async function increaseViews(blogId){
             return null;
         }
 
-        res = result.data.key;
-
     } catch (error) {
         console.log(error);
     }
-    return key;
 }
 
 
 // Like/unlike api
 export async function likeApis(blogId,token,dispatch){
-    let res = null;
     try {
         // fetch apiCall
         const result = await apiConnector("POST",blogEndpoints.CREATE_LIKE,{blogId},{
@@ -230,15 +225,14 @@ export async function likeApis(blogId,token,dispatch){
             return null;
         }
 
-        res = result.data.key;
+        const { key,totalLikes,data } = result.data;
 
-        localStorage.setItem("like",JSON.stringify(res));
+        dispatch(setLikeKey(key));
+        localStorage.setItem(`like_${blogId}`,JSON.stringify(key));
 
-        dispatch(res);
+        return {key,totalLikes,data};
 
     } catch (error) {
         console.log(error);
     }
-    console.log("res",res);
-    return res;
 }
