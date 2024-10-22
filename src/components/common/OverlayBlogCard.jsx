@@ -19,7 +19,7 @@ export function OverlayBlogCard({blog}) {
         )}
       >
         {/* profile , name */}
-        <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-richblue-900 group-focus/card:bg-richblue-900 opacity-60"></div>
+        <div className="absolute w-full h-full top-0 left-0 transition duration-400 bg-richblack-900 group-hover/card:scale-0 group-focus/card:scale-0 opacity-60"></div>
         <div className="flex flex-row items-center space-x-4 z-10">
           <img
             height="100"

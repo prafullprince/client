@@ -36,7 +36,7 @@ function BlogDetails() {
         <div className="w-[90%] md:w-[80%] mx-auto flex flex-col gap-6 lg:flex-row lg:gap-2 lg:justify-between">
           {/* header details */}
           {/* left */}
-          <div className="flex flex-col gap-3 w-[80%]">
+          <div className="flex flex-col w-[80%]">
             {/* path */}
             <div className="flex text-[#838894] text-base gap-1 items-center">
               Home / Blog /{" "}
@@ -44,20 +44,30 @@ function BlogDetails() {
                 {blogDetails?.category?.name}
               </span>
             </div>
-            <div className="text-[#F1F2FF] font-medium text-4xl mt-2">
+            <div className="text-[#F1F2FF] font-medium text-4xl mt-4">
               {blogDetails?.name}
             </div>
-            <p className="text-sm text-[#999DAA]">{blogDetails?.description}</p>
+            <p className=" text-pure-greys-100 text-sm">{blogDetails?.totalViews} views</p>
+            <p className="text-sm text-[#999DAA] mt-2">{blogDetails?.description}</p>
             {/* rating and reviews */}
             {/* author name */}
-            <p className="text-[#DBDDEA] text-base mt-1">{`Created by ${blogDetails?.blogger?.name}`}</p>
+            <p className="text-[#6e6f76] text-base mt-3">{`Created by ${blogDetails?.blogger?.name}`}</p>
             {/* time */}
             <div className="flex gap-2 mt-1 items-center text-sm">
-              <p>CreatedAt:</p>
+              <p className="text-[#6e6f76] text-base">CreatedAt:</p>
               <IoTimeOutline className=" text-yellow-50 h-5 w-5" />
               <p className=" text-yellow-50">
                 {blogDetails?.createdAt.split("T")[0]}
               </p>
+            </div>
+            {/* likes and Comment */}
+            <div className="flex flex-col gap-3 mt-3">
+                {/* likes */}
+                <div className="flex gap-1 text-richblack-100">
+                  
+                </div>
+                {/* comments */}
+                <div></div>
             </div>
           </div>
           {/* right */}

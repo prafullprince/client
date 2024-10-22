@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Spotlight } from '../components/ui/Spotlight'
 import { fetchAllBlogs } from '../service/apiCall/courseApiCall';
-import BlogCard from '../components/common/BlogCard';
 import { OverlayBlogCard } from '../components/common/OverlayBlogCard';
 import Spinner from '../components/extraUi/Spinner';
 
