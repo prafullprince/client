@@ -10,11 +10,11 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { ShootingStars } from "../components/ui/shooting-stars";
 import { StarsBackground } from "../components/ui/stars-background";
 import Spinner from "../components/extraUi/Spinner";
-import { IoIosHeartEmpty } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import { FcLikePlaceholder } from "react-icons/fc";
+
 
 function BlogDetails() {
-
   const dispatch = useDispatch();
   const { blogId } = useParams();
   const { token } = useSelector((state) => state.auth);
@@ -22,7 +22,7 @@ function BlogDetails() {
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const { likeKey } = useSelector((state) => state.blogs);
-  const [key,setKey] = useState(likeKey);
+  const [key, setKey] = useState(likeKey);
 
   useEffect(() => {
     async function fetchBlogDetails() {
@@ -80,8 +80,8 @@ function BlogDetails() {
             {/* likes and Comment */}
             <div className="flex flex-col gap-3 mt-3">
               {/* likes */}
-              <div className="flex gap-2 text-richblack-100 items-center">
-                {key ? (
+
+              {/* {key ? (
                   <button className="text-3xl transition-all duration-200" onClick={likeHandler}>
                     <FcLike />
                   </button>
@@ -89,13 +89,28 @@ function BlogDetails() {
                   <button className="text-3xl transition-all duration-200" onClick={likeHandler}>
                     <IoIosHeartEmpty />
                   </button>
-                )}
-                <p className="text-lg text-richblack-100 mt-[4px]">{blogDetails?.totalLikes}</p>
-              </div>
-              {/* comments */}
-              <div className="flex gap-2">
+                )} */}
 
+              <div className="flex gap-2 text-richblack-100 items-center">
+                <button
+                  className={`text-3xl transition-all duration-200 transform ${
+                    key ? "scale-125 animate-like" : "scale-100"
+                  }`}
+                  onClick={likeHandler}
+                >
+                  {key ? (
+                    <FcLike className="transition-opacity duration-300 ease-in-out opacity-100" />
+                  ) : (
+                    <FcLikePlaceholder className="transition-opacity duration-300 ease-in-out opacity-100" />
+                  )}
+                </button>
+                <p className="text-lg text-richblack-100 mt-[4px]">
+                  {blogDetails?.totalLikes}
+                </p>
               </div>
+
+              {/* comments */}
+              <div className="flex gap-2"></div>
             </div>
           </div>
           {/* right */}
