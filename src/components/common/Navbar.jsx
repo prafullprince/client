@@ -49,7 +49,7 @@ function Navbar() {
           setResult(response);
         };
         fetchData();
-      },1000);
+      },100);
 
       return ()=>clearTimeout(intervalId);
 

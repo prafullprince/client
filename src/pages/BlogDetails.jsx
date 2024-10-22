@@ -8,6 +8,8 @@ import { ShootingStars } from "../components/ui/shooting-stars";
 import { StarsBackground } from "../components/ui/stars-background";
 import Spinner from "../components/extraUi/Spinner";
 import { useDispatch, useSelector } from "react-redux";
+import CommentPage from "../components/blogDetailsCompo/CommentPage";
+import CreateComment from "../components/blogDetailsCompo/CreateComment";
 
 
 function BlogDetails() {
@@ -57,7 +59,7 @@ function BlogDetails() {
         <div className="w-[90%] md:w-[80%] mx-auto flex flex-col gap-6 lg:flex-row lg:gap-2 lg:justify-between">
           {/* header details */}
           {/* left */}
-          <div className="flex flex-col w-[80%]">
+          <div className="flex flex-col lg:w-[80%]">
             {/* path */}
             <div className="flex text-[#838894] text-base gap-1 items-center">
               Home / Blog /{" "}
@@ -95,7 +97,7 @@ function BlogDetails() {
                         <FcLikePlaceholder className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
                       </div>
                     }
-                  </button>
+                  </button> 
                   <p className=" text-lg">{blogDetails?.totalLikes}</p>
                 </div>
                 {/* comments */}
@@ -163,6 +165,13 @@ function BlogDetails() {
               }
             </div>
         </div>
+        {/* comment */}
+        <div className=" lg:w-[60%]">
+          <CreateComment setBlogDetails={setBlogDetails} blogId={blogId} />
+        </div>
+        <div>
+          <CommentPage blogId={blogId} />
+        </div>
         {/* author */}
         <div className="flex flex-col gap-4 mt-8 relative z-20">
             <p className="text-[#F1F2FF] font-semibold text-2xl shadow-sm shadow-blue-100 w-fit p-2">Author</p>
@@ -174,7 +183,7 @@ function BlogDetails() {
               <p className="text-[#F1F2FF] font-medium">{blogDetails?.blogger?.name}</p>
             </div>
             <div className="">
-              <p className="text-[#C5C7D4] text-sm">{blogDetails?.description}</p>
+              <p className="text-[#C5C7D4] text-sm">{blogDetails?.whatYouWillLearn}</p>
             </div>
         </div>
         <ShootingStars />

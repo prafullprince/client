@@ -236,3 +236,51 @@ export async function likeApis(blogId,token,dispatch){
         console.log(error);
     }
 }
+
+
+
+// comment apis
+export async function createComment(blogId,body,token){
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.CREATE_COMMENT,{blogId,body},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+        console.log("first")
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        console.log(result.data);
+        const { totalComments } = result.data.updatedBlog;
+
+        toast.success("Comment Successfull");
+
+        return totalComments;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// comment apis
+export async function getComment(blogId){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.FETCH_POST_COMMENTS,{blogId});
+        console.log("first")
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        console.log(result.data);
+        res = result?.data?.data;
+
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
