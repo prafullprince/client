@@ -25,5 +25,6 @@ export const blogEndpoints = {
     SEARCH_BLOG: BASE_URL + "/blog/searchBlogApi",
     FETCH_ALL_BLOG: BASE_URL + "/blog/getAllBlogs",
     FETCH_BLOG_DETAILS: BASE_URL + "/blog/blogPageDetails",
-    CREATE_VIEWS: BASE_URL + "/blog/calculateViews"
+    CREATE_VIEWS: BASE_URL + "/blog/calculateViews",
+    CREATE_LIKE: BASE_URL + "/blog/likeBlog"
 }

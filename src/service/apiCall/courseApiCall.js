@@ -196,6 +196,7 @@ export async function fetchAllBlogsDeatils(blogId){
 
 // Views increament
 export async function increaseViews(blogId){
+    res = null;
     try {
         // fetch apiCall
         const result = await apiConnector("PUT",blogEndpoints.CREATE_VIEWS,{blogId});
@@ -205,7 +206,39 @@ export async function increaseViews(blogId){
             return null;
         }
 
+        res = result.data.key;
+
     } catch (error) {
         console.log(error);
     }
+    return key;
+}
+
+
+// Like/unlike api
+export async function likeApis(blogId,token,dispatch){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.CREATE_LIKE,{blogId},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+        console.log("first")
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+
+        res = result.data.key;
+
+        localStorage.setItem("like",JSON.stringify(res));
+
+        dispatch(res);
+
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("res",res);
+    return res;
 }
