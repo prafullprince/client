@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
+import { increaseViews } from "../../service/apiCall/courseApiCall";
 
 export function OverlayBlogCard({blog}) {
+
+  async function viewsApi(){
+    await increaseViews(blog._id);
+  }
+
+
   return (
-    <Link to={`/blogDetails/${blog._id}`} className="w-full group/card">
+    <Link onClick={viewsApi} to={`/blogDetails/${blog._id}`} className="w-full group/card">
       <div
         style={{backgroundImage:`url(${blog?.thumbnail})`}}
         className={cn(
           " cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto backgroundImage flex flex-col justify-between p-4",
-          `bg-cover shadow-sm shadow-blue-600`
+          `bg-cover shadow-sm shadow-white`
         )}
       >
         {/* profile , name */}
@@ -25,7 +32,7 @@ export function OverlayBlogCard({blog}) {
             <p className="font-normal text-base text-gray-50 relative z-10">
               {blog.blogger.name}
             </p>
-            <p className="text-sm text-gray-400">2 min read</p>
+            <p className="text-sm text-gray-400">{blog?.totalViews} Views</p>
           </div>
         </div>
         {/* name ,description */}

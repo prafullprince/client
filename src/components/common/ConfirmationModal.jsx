@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 // import { useNavigate } from 'react-router-dom';
 
 function ConfirmationModal({modalData}) {
@@ -31,4 +31,4 @@ function ConfirmationModal({modalData}) {
   )
 }
 
-export default ConfirmationModal
+export default memo(ConfirmationModal)

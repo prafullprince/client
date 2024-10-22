@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import ProfileDropDownConModal from './ProfileDropDownConModal';
 import { Link, useNavigate } from 'react-router-dom';
@@ -64,4 +64,4 @@ function ProfileDropdown({navigate,dispatch}) {
   )
 }
 
-export default ProfileDropdown
+export default memo(ProfileDropdown);

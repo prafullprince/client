@@ -192,3 +192,20 @@ export async function fetchAllBlogsDeatils(blogId){
     }
     return res;
 }
+
+
+// Views increament
+export async function increaseViews(blogId){
+    try {
+        // fetch apiCall
+        const result = await apiConnector("PUT",blogEndpoints.CREATE_VIEWS,{blogId});
+        
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}

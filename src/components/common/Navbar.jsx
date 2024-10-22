@@ -62,6 +62,7 @@ function Navbar() {
   };
 
 
+  // fetchCategory
   useEffect(()=>{
     async function fetchCategory(){
       const response = await fetchAllCategory();
@@ -70,7 +71,6 @@ function Navbar() {
     fetchCategory();
   },[]);
 
-  
 
   return (
     <div
