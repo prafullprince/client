@@ -24,6 +24,7 @@ function BlogDetails() {
   const { likeKey } = useSelector((state) => state.blogs);
   const [key, setKey] = useState(likeKey);
 
+
   useEffect(() => {
     async function fetchBlogDetails() {
       setLoading(true);
@@ -81,18 +82,17 @@ function BlogDetails() {
             <div className="flex flex-col gap-3 mt-3">
               {/* likes */}
 
-              {/* {key ? (
+              <div className="flex gap-2 text-richblack-100 items-center">
+              {key ? (
                   <button className="text-3xl transition-all duration-200" onClick={likeHandler}>
                     <FcLike />
                   </button>
                 ) : (
                   <button className="text-3xl transition-all duration-200" onClick={likeHandler}>
-                    <IoIosHeartEmpty />
+                    <FcLikePlaceholder />
                   </button>
-                )} */}
-
-              <div className="flex gap-2 text-richblack-100 items-center">
-                <button
+                )}
+                {/* <button
                   className={`text-3xl transition-all duration-200 transform ${
                     key ? "scale-125 animate-like" : "scale-100"
                   }`}
@@ -106,7 +106,7 @@ function BlogDetails() {
                 </button>
                 <p className="text-lg text-richblack-100 mt-[4px]">
                   {blogDetails?.totalLikes}
-                </p>
+                </p> */}
               </div>
 
               {/* comments */}
