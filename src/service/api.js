@@ -28,5 +28,6 @@ export const blogEndpoints = {
     CREATE_VIEWS: BASE_URL + "/blog/calculateViews",
     CREATE_LIKE: BASE_URL + "/blog/likeBlog",
     CREATE_COMMENT: BASE_URL + "/blog/createComment",
-    FETCH_POST_COMMENTS: BASE_URL + "/blog/getAllComments"
+    FETCH_POST_COMMENTS: BASE_URL + "/blog/getAllComments",
+    FETCH_BLOGGER_POSTS: BASE_URL + "/blog/getBloggerPosts"
 }

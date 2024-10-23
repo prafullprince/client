@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { increaseViews } from "../../service/apiCall/courseApiCall";
+import HighlightText from "./HighlightText";
 
 export function OverlayBlogCard({blog}) {
 
@@ -30,7 +31,7 @@ export function OverlayBlogCard({blog}) {
           />
           <div className="flex flex-col">
             <p className="font-normal text-base text-gray-50 relative z-10">
-              {blog.blogger.name}
+              <HighlightText text={blog.blogger.name} />
             </p>
             <p className="text-sm text-gray-400">{blog?.totalViews} Views</p>
           </div>

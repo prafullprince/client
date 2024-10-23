@@ -284,3 +284,28 @@ export async function getComment(blogId){
     }
     return res;
 }
+
+
+
+// blogger posts apis
+export async function getBloggerPosts(status,token){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.FETCH_BLOGGER_POSTS,{status},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+        console.log("first");
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        console.log(result.data);
+        res = result.data.data;
+
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
