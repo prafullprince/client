@@ -137,11 +137,11 @@ function BlogDetails() {
               </div>
             </div>
             {/* nested content */}
-            <div className="">
+            <div className=" w-full">
               {
                 blogDetails?.blogContent?.map((section,index)=>(
-                  <details className="" key={section?._id}>
-                     <summary className="list-none lg:w-[60%] flex justify-between cursor-pointer border border-[#424854] bg-[#2C333F] text-[#F1F2FF] font-medium px-4 py-3 transition-all duration-200 z-40">
+                  <details className=" w-full" key={section?._id}>
+                     <summary className="list-none flex justify-between cursor-pointer border border-[#424854] bg-[#2C333F] text-[#F1F2FF] font-medium px-4 py-3 transition-all duration-200 z-40">
                       <div className="flex items-center gap-2 w-full">
                         <MdOutlineArrowDropDown className="text-xl" />
                         <div className="break-words w-[80%]">{section?.name.substring(0,80)}</div>
@@ -151,10 +151,10 @@ function BlogDetails() {
                      <div>
                         {
                           section?.subSection?.map((subSec,index)=>(
-                            <div className="py-2 flex flex-col w-full" key={subSec._id}>
-                                <img className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[59%] ml-2 h-[400px] aspect-auto" src={subSec?.imageUrl} />
+                            <div className="py-2 flex flex-col lg:flex-row gap-2 w-full" key={subSec._id}>
+                                <img className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 h-[400px] aspect-auto" src={subSec?.imageUrl} />
                                 <div className="lg:w-[100%] break-words py-2 relative">
-                                  <p className="px-4 mt-3 lg:w-[60%] text-clip text-wrap text-[#C5C7D4]">{`->  `}{subSec?.body}</p>
+                                  <p className="px-4 mt-3 text-clip text-wrap text-[#C5C7D4] break-all">{`->  `}{subSec?.body}</p>
                                 </div>
                             </div>
                           ))
