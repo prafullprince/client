@@ -21,7 +21,7 @@ export function OverlayBlogCard({ blog }) {
         style={{ backgroundImage: `url(${blog?.thumbnail})` }}
         className={cn(
           " cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto backgroundImage flex flex-col justify-between p-4",
-          `bg-cover shadow-sm shadow-white`
+          `bg-cover shadow-sm shadow-white bg-center`
         )}
       > 
         {/* profile , name */}
