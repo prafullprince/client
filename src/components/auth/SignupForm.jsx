@@ -15,7 +15,7 @@ export default function SignupForm() {
   const dispatch = useDispatch();
 
   // state
-  const [accountType,setAccountType] = useState(ACCOUNT_TYPE.VISITOR);
+  const [accountType,setAccountType] = useState(ACCOUNT_TYPE.BLOGGER);
   const [formData,setFormData] = useState({
     name:"",
     email:"",
@@ -55,7 +55,7 @@ export default function SignupForm() {
     {
       id:1,
       type:ACCOUNT_TYPE.VISITOR,
-      tabName:"Visitor"
+      tabName:"Instructor"
     },
     {
       id:2,
@@ -63,6 +63,7 @@ export default function SignupForm() {
       tabName:"Blogger"
     }
   ]
+
 
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
