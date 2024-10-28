@@ -4,7 +4,7 @@ import Slider from './Slider';
 
 function CatalogTab({popularBlog,newBlog}) {
 
-    const tab = ["Popular","New"];
+    const tab = ["Popular","Others"];
     const [category,setCategory] = useState(tab[0]);
 
   return (
@@ -22,7 +22,7 @@ function CatalogTab({popularBlog,newBlog}) {
             category === "Popular" && <Slider popularBlog={popularBlog} />
         }
         {
-            category === "New" && <Slider popularBlog={newBlog} />
+            category === "Others" && <Slider popularBlog={newBlog} />
         }
     </div>
   )

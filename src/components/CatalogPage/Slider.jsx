@@ -13,7 +13,7 @@ import "../../App.css";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import BlogCard from "../common/BlogCard";
 
-function Slider({popularBlog}) {
+function Slider({ popularBlog }) {
   return (
     <div className=" mt-12">
       <div>
@@ -21,7 +21,7 @@ function Slider({popularBlog}) {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={4}
+          slidesPerView={1}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,
@@ -29,23 +29,35 @@ function Slider({popularBlog}) {
             modifier: 1,
             slideShadows: true,
           }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
           pagination={true}
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
         >
-        {
-            popularBlog !== null ? (
-                <div>
-                    {
-                        popularBlog?.map((blog)=>(
-                            <SwiperSlide key={blog._id}>
-                                <BlogCard blog={blog} styleFlex={false} />
-                            </SwiperSlide>
-                        ))
-                    }
-                </div>
-            ) : (<Spinner />)
-        }
+          {popularBlog !== null ? (
+            <div>
+              {popularBlog?.map((blog) => (
+                <SwiperSlide key={blog._id}>
+                  <BlogCard blog={blog} styleFlex={false} />
+                </SwiperSlide>
+              ))}
+            </div>
+          ) : (
+            <Spinner />
+          )}
         </Swiper>
       </div>
     </div>
@@ -53,8 +65,3 @@ function Slider({popularBlog}) {
 }
 
 export default Slider;
-
-
-// <SwiperSlide>
-//             <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-//           </SwiperSlide>
