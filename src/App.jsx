@@ -11,7 +11,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import MyProfile from "./components/Dashboard/MyProfile";
 import AddBlog from "./components/Dashboard/Blog/AddBlog";
 import BloggerDashboard from "./components/Dashboard/BloggerDashboard";
-import Setting from "./components/Dashboard/Setting";
+import Setting from "./components/Dashboard/Setting/Setting";
 import BlogDetails from "./pages/BlogDetails";
 import BlogCategory from "./pages/BlogCategory";
 import CatalogPage from "./pages/CatalogPage";

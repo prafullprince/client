@@ -1,9 +1,7 @@
-import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { categoryEndpoints } from "../api";
 
 export async function fetchAllCategory(){
-    const tid = toast.loading("...Loading");
     let res = [];
     try {
         // apiCall
@@ -11,7 +9,7 @@ export async function fetchAllCategory(){
 
         // validation
         if(!result.data.success){
-            toast.error("Category not fetched");
+            throw new Error("Category not fetched");
         }
 
         res = result?.data?.data;
@@ -19,6 +17,5 @@ export async function fetchAllCategory(){
     } catch (error) {
         console.log(error);
     }
-    toast.dismiss(tid);
     return res;
 }

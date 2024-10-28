@@ -9,8 +9,8 @@ export const authEndpoints = {
 
 
 export const profileEndpoints = {
-    UPDATE_PIC:BASE_URL + "/user/updateProfilePic",
-
+    UPDATE_PIC: BASE_URL + "/user/updateProfilePic",
+    UPDATE_PROFILE: BASE_URL + "/user/updateProfile"
 }
 
 export const categoryEndpoints = {

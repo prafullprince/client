@@ -93,11 +93,11 @@ function MyProfile() {
               </div>
             </div>
             {/* edit */}
-            <div className={`md:self-center w-fit md:place-self-end max-w-[100px] ${imageFile ? "mr-6":""}`}> 
+            <Link to={"/dashboard/settings"} className={`md:self-center w-fit md:place-self-end max-w-[100px] ${imageFile ? "mr-6":""}`}> 
               <IconBtn btnHandler={submitHandler} text={imageFile ? "Upload" : "Edit"}>
                 {imageFile ? (<FaCheck />) : (<FaEdit />)}
               </IconBtn>
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ function MyProfile() {
               <div className="col-span-2 flex flex-col gap-2">
                 <p className="text-[#424854] text-sm">Phone</p>
                 <div className="text-[#F1F2FF] font-medium text-sm">
-                {user?.additionalDetails?.dateOfBirth ? (<p>{`+91 ${user?.additionalDetails?.contactNumber}`}</p>) : (<p className="text-brown-500">You don't uploaded yet</p>)}
+                {user?.additionalDetails?.contactNumber ? (<p>{`+91 ${user?.additionalDetails?.contactNumber}`}</p>) : (<p className="text-brown-500">You don't uploaded yet</p>)}
                 </div>
               </div>
             </div>
