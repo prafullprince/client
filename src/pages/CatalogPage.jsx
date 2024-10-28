@@ -17,6 +17,7 @@ function CatalogPage() {
   const [tenMostViewedBlog, setTenMostViewedBlog] = useState(null);
   const [tenMostViewedOtherBlog, setTenMostViewedOtherBlog] = useState(null);
   const [tab,setTab] = useState(null);
+  const [category,setCategory] = useState(null);
 
   console.log(tab)
   console.log(tenMostViewedBlog)
@@ -27,10 +28,11 @@ function CatalogPage() {
       const res = await fetchAllCategory();
       const filteredCategory = res?.filter(
         (category) =>
-          category?.name.split(" ").join("-").toLowerCase() === catalogName
+          category.name.split(" ").join("-").toLowerCase() === catalogName
       );
       const categoryId = filteredCategory[0]._id;
       setCateoriesId(categoryId);
+      setCategory(filteredCategory[0]);
     }
     fetchCategoryId();
   }, [catalogName]);
@@ -52,9 +54,9 @@ function CatalogPage() {
     <div className=" text-white">
       <div>
         {/* header */}
-        <Header />
+        <Header category={category} />
         {/* heading and Tabs */}
-        <div className="w-[90%] lg:w-[80%] mx-auto">
+        <div className="w-[90%] lg:w-[80%] mx-auto mt-12">
           <h2 className=" text-3xl font-semibold text-[#F1F2FF]">Blogs to you started</h2>
           <CatalogTab popularBlog={tenMostViewedBlog} newBlog={allOtherBlog} />
         </div>
