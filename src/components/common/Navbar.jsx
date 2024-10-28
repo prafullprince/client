@@ -32,7 +32,7 @@ function Navbar() {
   const [query, setQuery] = useState(searchParams.get("query") || "");
   const [result, setResult] = useState([]);
   const [dropDown, setDropDown] = useState(false);
-  const [categories,setCateories] = useState([]);
+  const [categories, setCateories] = useState([]);
 
   // matchRoute fn
   const matchRoute = (route) => {
@@ -42,16 +42,15 @@ function Navbar() {
   // useEffect to load blogs if query exists in URL on initial load
   useEffect(() => {
     if (query) {
-      const intervalId = setTimeout(()=>{
+      const intervalId = setTimeout(() => {
         const fetchData = async () => {
           const response = await searchBlog(query);
           setResult(response);
         };
         fetchData();
-      },100);
+      }, 100);
 
-      return ()=>clearTimeout(intervalId);
-
+      return () => clearTimeout(intervalId);
     }
   }, [query]); // Runs when query changes
 
@@ -60,22 +59,20 @@ function Navbar() {
     setTimeout(() => setDropDown(false), 200);
   };
 
-
   // fetchCategory
-  useEffect(()=>{
-    async function fetchCategory(){
+  useEffect(() => {
+    async function fetchCategory() {
       const response = await fetchAllCategory();
       setCateories(response);
     }
     fetchCategory();
-  },[]);
-
+  }, []);
 
   return (
     <div
       className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 transition-all duration-200`}
     >
-      <div className="flex w-[90%] md:w-[80%] mx-auto items-center justify-between gap-0 md:gap-1">
+      <div className="flex w-[90%] md:w-[80%] mx-auto items-center justify-between">
         {/* Logo */}
         <Link className="w-8 h-8 flex items-center gap-2" to="/">
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
@@ -105,61 +102,67 @@ function Navbar() {
           </nav>
         )}
 
-        {/* search */}
-        <div className="flex gap-4">
-          {/* Search */}
-          <div className="relative">
-            <Input
-              className="bg-richblack-800 border-richblack-900 lg:w-[300px]"
-              placeholder="search blog"
-              type="text"
-              name="query"
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setDropDown(true);
-              }}
-              onFocus={() => setDropDown(true)}
-              onBlur={handleBlur}
-            />
-            {dropDown && result.length > 0 && (
-              <div className="absolute z-50 bg-white border border-gray-300 rounded mt-1 lg:w-[300px] shadow-lg max-h-60 overflow-auto flex flex-col">
-                {result.map((blog) => (
-                  <Link
-                    onClick={() => {
-                      setQuery(blog.name);
-                    }}
-                    to={`/blog/list?v=${blog.name}`}
-                    key={blog._id}
-                    className="p-2 cursor-pointer"
-                  >
-                    {blog.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+        {/* Search */}
+        <div className="relative">
+          <Input
+            className="bg-richblack-800 border-richblack-900 w-[100px] lg:w-[300px]"
+            placeholder="search blog"
+            type="text"
+            name="query"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setDropDown(true);
+            }}
+            onFocus={() => setDropDown(true)}
+            onBlur={handleBlur}
+          />
+          {dropDown && result.length > 0 && (
+            <div className="absolute z-[200] bg-white border border-gray-300 rounded mt-1 lg:w-[300px] shadow-lg max-h-60 overflow-auto flex flex-col">
+              {result.map((blog) => (
+                <Link
+                  onClick={() => {
+                    setQuery(blog.name);
+                  }}
+                  to={`/blog/list?v=${blog.name}`}
+                  key={blog._id}
+                  className="p-2 cursor-pointer"
+                >
+                  {blog.name}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* category */}
         <div className="flex items-center text-white gap-[2px] relative group cursor-pointer">
-              <h2 className="hidden sm:block">Category</h2>
-              <RiArrowDropDownLine className="text-2xl" />
-              <div className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 px-2 py-3 text-richblack-900 opacity-0 gap-1 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[200px]">
-                <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
-                {
-                  categories?.length ? (<>
-                    {
-                      categories?.filter((category)=>category.blogs.length > 0 )?.map(
-                        (category)=>(
-                          <Link key={category._id} to={`/catalog/${category.name.split(" ").join("-").toLowerCase()}`} className="px-3 py-2 hover:bg-richblack-700 hover:text-white rounded-lg transition-all duration-200">{category.name}</Link>
-                        )
-                      )
-                    }
-                  </>) : (<div>No categories found</div>)
-                }
-              </div>
+          <h2 className="hidden sm:block">Category</h2>
+          <RiArrowDropDownLine className="text-2xl" />
+          <div className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 px-2 py-3 text-richblack-900 opacity-0 gap-1 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[200px]">
+            <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
+            {categories?.length ? (
+              <>
+                {categories
+                  ?.filter((category) => category.blogs.length > 0)
+                  ?.map((category) => (
+                    <Link
+                      key={category._id}
+                      to={`/catalog/${category.name
+                        .split(" ")
+                        .join("-")
+                        .toLowerCase()}`}
+                      className="px-3 py-2 hover:bg-richblack-700 hover:text-white rounded-lg transition-all duration-200"
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+              </>
+            ) : (
+              <div>No categories found</div>
+            )}
           </div>
+        </div>
 
         {/* login signup for big screen */}
         <div className="items-center gap-x-1 hidden md:flex md:gap-x-4">
