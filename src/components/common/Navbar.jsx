@@ -33,7 +33,6 @@ function Navbar() {
   const [result, setResult] = useState([]);
   const [dropDown, setDropDown] = useState(false);
   const [categories,setCateories] = useState([]);
-  console.log(categories);
 
   // matchRoute fn
   const matchRoute = (route) => {
@@ -141,7 +140,7 @@ function Navbar() {
           </div>
         </div>
 
-        {/* login signup for big screen */}
+        {/* login signup for big screen with catalog */}
         <div className="items-center gap-x-1 hidden md:flex md:gap-x-4">
             {/* category */}
             <div className="flex items-center text-white gap-[2px] relative group cursor-pointer">

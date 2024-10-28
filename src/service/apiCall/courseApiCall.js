@@ -172,7 +172,7 @@ export async function fetchAllBlogs(){
 }
 
 
-// Get All Blogs
+// Get All BlogsDetails
 export async function fetchAllBlogsDeatils(blogId){
     let res = null;
     try {
@@ -303,6 +303,26 @@ export async function getBloggerPosts(status,token){
         }
         console.log(result.data);
         res = result.data.data;
+
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
+
+
+// BlogsOfCategories
+export async function getCategoryBlogs(categoryId){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.FETCH_CATEGORY_BLOGS,{categoryId});
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        
+        res = result?.data;
 
     } catch (error) {
         console.log(error);
