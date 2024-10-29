@@ -4,7 +4,8 @@ const BASE_URL = "https://kayakalps.onrender.com/api/v1";
 export const authEndpoints = {
     SIGNUP:BASE_URL + "/auth/signup",
     SEND_OTP:BASE_URL + "/auth/sendotp",
-    LOGIN: BASE_URL + "/auth/login"
+    LOGIN: BASE_URL + "/auth/login",
+    CHANGE_PASS: BASE_URL + "/auth/changepassword"
 }
 
 

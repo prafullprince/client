@@ -84,7 +84,9 @@ export async function login(email, password, navigate, dispatch) {
 
     const userImage = result.data.user.image
       ? result.data.user.image
-      : `https://api.dicebear.com/5.x/initials/svg?seed=${result.data.user.name.split(" ")[0]} ${result.data.user.name.split(" ")[1]}`;
+      : `https://api.dicebear.com/5.x/initials/svg?seed=${
+          result.data.user.name.split(" ")[0]
+        } ${result.data.user.name.split(" ")[1]}`;
     dispatch(setUser({ ...result.data.user, image: userImage }));
     dispatch(setImage(userImage));
     localStorage.setItem("user", JSON.stringify(result.data.user));
@@ -110,6 +112,43 @@ export async function logout(navigate, dispatch) {
     localStorage.removeItem("image");
     toast.success("Logged Out");
     navigate("/login");
+  } catch (error) {
+    console.log(error);
+  }
+  toast.dismiss(tid);
+}
+
+// login
+export async function changePassword(
+  oldPassword,
+  newPassword,
+  confirmNewPassword,
+  token
+) {
+  const tid = toast.loading("...Loading");
+  try {
+    // apiCall
+    const result = await apiConnector(
+      "POST",
+      authEndpoints.CHANGE_PASS,
+      {
+        oldPassword,
+        newPassword,
+        confirmNewPassword,
+      },
+      {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    // validation
+    if (!result.data.success) {
+      toast.error(result.data.message);
+    }
+
+    // success response
+    toast.success("Password Changed");
   } catch (error) {
     console.log(error);
   }
