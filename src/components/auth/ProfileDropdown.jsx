@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import ProfileDropDownConModal from './ProfileDropDownConModal';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,14 +10,33 @@ function ProfileDropdown({navigate,dispatch}) {
 
     // const navigate = useNavigate();
     // const dispatch = useNavigate();
+    const buttonRef = useRef(null);
 
     const [profileDropDownModal,setProfileDropDownModal] = useState(null);
     const [confirmationModal,setConfirmationModal] = useState(null);
 
     const { image } = useSelector((state)=>state.profile);
+  
+    useEffect(()=>{
+      document.addEventListener("mousedown",()=>{
+        if(buttonRef.current && !buttonRef.current.onClick){
+          setProfileDropDownModal(null);
+          setConfirmationModal(null);
+        }
+      })
+
+      return ()=>{
+        document.removeEventListener("mousedown",()=>{
+          if(buttonRef.current && !buttonRef.current.onClick){
+            setProfileDropDownModal(null);
+            setConfirmationModal(null);
+          }
+        })
+      }
+    },[])
 
   return (
-    <div className='flex items-center gap-x-1 md:gap-x-4 text-white'>
+    <div ref={buttonRef} className='flex items-center gap-x-1 md:gap-x-4 text-white'>
         {/* dashboard */}
         <div className='hidden md:block md:gap-x-2'>
             <Link className='px-4 rounded-lg shadow-sm shadow-blue-100 py-[8px] bg-richblack-800 hidden md:block' to={"/dashboard/my-profile"}>

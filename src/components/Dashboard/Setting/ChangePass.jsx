@@ -40,7 +40,7 @@ function ChangePass() {
           <div className="text-[#F1F2FF] font-semibold text-xl">
             Change Password
           </div>
-          <div onClick={submitHandler} className=" text-richblack-900 font-semibold rounded-lg bg-yellow-50 py-2 px-4">
+          <div onClick={submitHandler} className=" text-richblack-900 font-semibold rounded-lg bg-yellow-50 py-2 px-4 w-fit">
             Save
           </div>
         </div>
