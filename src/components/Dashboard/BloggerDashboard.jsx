@@ -3,9 +3,11 @@ import { BLOG_STATUS } from '../../helper/constant'
 import Tab from '../auth/Tab'
 import HighlightText from '../common/HighlightText';
 import { getBloggerPosts } from '../../service/apiCall/courseApiCall';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { OverlayBlogCard } from '../common/OverlayBlogCard';
 import Spinner from '../extraUi/Spinner';
+import { setBlog, setStep } from '../../slice/blogSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const tabData = [
@@ -24,13 +26,19 @@ const tabData = [
 
 function BloggerDashboard() {
 
+  // hook
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // state
   const [status,setStatus] = useState(BLOG_STATUS.PUBLISHED);
   const [posts,setPosts] = useState([]);
   const [loading,setLoading] = useState(false);
-  console.log(status);
+  
 
   const { token } = useSelector((state)=>state.auth);
 
+  // fetchBloggerPosts
   useEffect(()=>{
     async function fetchInstructorPosts(){
       setLoading(true);
@@ -42,7 +50,6 @@ function BloggerDashboard() {
     fetchInstructorPosts();
   },[status]);
 
-  // if(loading) return <Spinner />
 
   return (
     <div className='text-white'>
@@ -64,10 +71,19 @@ function BloggerDashboard() {
                 {
               posts?.length === 0 ? (<div>No post found</div>) : 
               (
-                <div className='grid lg:grid-cols-3 lg:gap-4 md:grid-cols-2 md:gap-3 gap-4'>
+                <div className='grid lg:grid-cols-3 lg:gap-6 md:grid-cols-2 md:gap-3 gap-6'>
                   {
                     posts.map((post)=>(
-                      <OverlayBlogCard blog={post} key={post._id} />
+                      <div key={post._id} className=' flex flex-col gap-1'>
+                        <OverlayBlogCard blog={post} />
+                        <button onClick={()=>{
+                          dispatch(setStep(2));
+                          localStorage.setItem("step",JSON.stringify(2));
+                          dispatch(setBlog(post));
+                          localStorage.setItem("blog",JSON.stringify(post));
+                          navigate("/dashboard/add-blog");
+                        }} className=' bg-yellow-50 text-richblack-900 px-4 py-2 rounded-lg'>Edit</button>
+                      </div>
                     ))
                   }
                 </div>

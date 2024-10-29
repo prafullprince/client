@@ -31,5 +31,6 @@ export const blogEndpoints = {
     CREATE_COMMENT: BASE_URL + "/blog/createComment",
     FETCH_POST_COMMENTS: BASE_URL + "/blog/getAllComments",
     FETCH_BLOGGER_POSTS: BASE_URL + "/blog/getBloggerPosts",
-    FETCH_CATEGORY_BLOGS: BASE_URL + "/blog/getBlogsOfCategory"
+    FETCH_CATEGORY_BLOGS: BASE_URL + "/blog/getBlogsOfCategory",
+    EDIT_SECTION: BASE_URL + "/blog/editSection"
 }

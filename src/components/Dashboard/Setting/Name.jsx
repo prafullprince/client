@@ -55,6 +55,7 @@ function Name() {
             <Input
               className=" bg-richblack-700"
               type="text"
+              placeholder="Enter your full name"
               name="names"
               value={formData.names}
               onChange={changeHandler}
@@ -72,7 +73,7 @@ function Name() {
           <div className="w-full flex flex-col gap-1">
             <Label className="ml-1 mb-1">Gender</Label>
             <select className=" bg-richblack-700 outline-none py-2 px-3 rounded-lg" name="gender" value={formData.gender} onChange={changeHandler}>
-              <option value={""}>select</option>
+              <option value={""}>select gender</option>
               <option value={"Male"}>Male</option>
               <option value={"Female"}>Female</option>
               <option value={"other"}>Rathar than not say</option>
@@ -84,12 +85,12 @@ function Name() {
           {/* Phone */}
           <div className=" flex flex-col gap-1 w-full">
             <Label className="ml-1 mb-1">Phone Number (+91)</Label>
-            <Input className=" bg-richblack-700" type="text" name="contactNumber" value={formData.contactNumber} onChange={changeHandler} />
+            <Input className=" bg-richblack-700" type="text" name="contactNumber" placeholder="Enter your contact number" value={formData.contactNumber} onChange={changeHandler} />
           </div>
           {/* About */}
           <div className="w-full flex flex-col gap-1">
             <Label className="ml-1 mb-1">About</Label>
-            <Input className=" bg-richblack-700" type="text" name="about" value={formData.about} onChange={changeHandler} />
+            <Input className=" bg-richblack-700" type="text" name="about" value={formData.about} placeholder="tell us about yourself" onChange={changeHandler} />
           </div>
         </div>
       </div>

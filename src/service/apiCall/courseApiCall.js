@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { blogEndpoints } from "../api";
-import { setBlog, setLikeKey, setStep } from "../../slice/blogSlice";
+import { setBlog, setStep } from "../../slice/blogSlice";
 
 
 // createBlog
@@ -24,6 +24,7 @@ export async function createBlog(name,description,whatYouWillLearn,category,thum
 
         dispatch(setBlog(result?.data?.data));
         dispatch(setStep(2));
+        localStorage.setItem("step",JSON.stringify(2));
         localStorage.setItem("blog",JSON.stringify(result.data.data));
 
         res = result?.data?.data;
@@ -89,7 +90,7 @@ export async function createSubSection(body,blogId,sectionId,imageUrl,token,disp
 
         console.log("updatedBlog is: ",result?.data?.updatedBlog)
         dispatch(setBlog(result?.data?.updatedBlog));
-        localStorage.setItem("blog",JSON.stringify(result?.data?.updatedBlog));
+        // localStorage.setItem("blog",JSON.stringify(result?.data?.updatedBlog));
         res = result?.data?.updatedBlog;
         toast.success("SubSection Created");
 
@@ -129,6 +130,7 @@ export async function publishBlog(blogId,status,token,dispatch){
     toast.dismiss(tid);
 }
 
+
 // searchBlog
 export async function searchBlog(query){
     let res = [];
@@ -149,6 +151,7 @@ export async function searchBlog(query){
     }
     return res;
 }
+
 
 // Get All Blogs
 export async function fetchAllBlogs(){
@@ -235,7 +238,6 @@ export async function likeApis(blogId,token){
 }
 
 
-
 // comment apis
 export async function createComment(blogId,body,token){
     try {
@@ -283,7 +285,6 @@ export async function getComment(blogId){
 }
 
 
-
 // blogger posts apis
 export async function getBloggerPosts(status,token){
     let res = null;
@@ -324,5 +325,33 @@ export async function getCategoryBlogs(categoryId){
     } catch (error) {
         console.log(error);
     }
+    return res;
+}
+
+
+// editSection
+export async function editBloggerSection(blogId,sectionId,name,token,dispatch){
+    const tid = toast.loading("Loading....");
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("PUT",blogEndpoints.EDIT_SECTION,{blogId,sectionId,name,token},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        console.log(result.data);
+        dispatch(setBlog(result.data.updatedBlog));
+        localStorage.setItem("blog",JSON.stringify(result.data.updatedBlog));
+        res = result.data.updatedBlog;
+        toast.success("Section edited successfully");
+    } catch (error) {
+        console.log(error);
+    }
+    toast.dismiss(tid);
     return res;
 }

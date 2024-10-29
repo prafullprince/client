@@ -40,7 +40,7 @@ function ChangePass() {
           <div className="text-[#F1F2FF] font-semibold text-xl">
             Change Password
           </div>
-          <div onClick={submitHandler} className=" text-richblack-900 font-semibold rounded-lg bg-yellow-50 py-2 px-4 w-fit">
+          <div onClick={submitHandler} className=" text-richblack-900 font-semibold rounded-lg bg-yellow-50 py-2 px-4 w-fit cursor-pointer">
             Save
           </div>
         </div>
@@ -49,17 +49,17 @@ function ChangePass() {
           {/* oldPassword */}
           <div className=" flex flex-col gap-1 w-full">
             <Label className="ml-1 mb-1">Old Password</Label>
-            <Input className=" bg-richblack-700" type="password" name="oldPassword" value={formData.oldPassword} onChange={changeHandler} />
+            <Input className=" bg-richblack-700" type="password" placeholder="Old password" name="oldPassword" value={formData.oldPassword} onChange={changeHandler} />
           </div>
           {/* new pass */}
           <div className=" flex flex-col gap-1 w-full">
             <Label className="ml-1 mb-1">New Password</Label>
-            <Input className=" bg-richblack-700" type="password" name="newPassword" value={formData.newPassword} onChange={changeHandler} />
+            <Input className=" bg-richblack-700" type="password" name="newPassword" placeholder="New password" value={formData.newPassword} onChange={changeHandler} />
           </div>
           {/* new pass */}
           <div className="w-full flex flex-col gap-1">
             <Label className="ml-1 mb-1">Confirm New Password</Label>
-            <Input className=" bg-richblack-700" type="password" name="confirmNewPassword" value={formData.confirmNewPassword} onChange={changeHandler} />
+            <Input className=" bg-richblack-700" type="password" name="confirmNewPassword" value={formData.confirmNewPassword} placeholder="Confirm new password" onChange={changeHandler} />
           </div>
         </div>
       </div>

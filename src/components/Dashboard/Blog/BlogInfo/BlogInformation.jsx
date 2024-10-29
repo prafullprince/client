@@ -158,6 +158,7 @@ function BlogInformation() {
             />
           </div>
         </div>
+        
         {/* button */}
         <div className="w-full flex justify-end p-6">
             <button className="px-5 py-2 bg-yellow-100 text-richblack-900 mt-4 flex justify-end w-fit rounded-lg text-lg font-semibold" type="submit">
