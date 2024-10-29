@@ -21,34 +21,48 @@ function CreateLike({ blogId, blogDetails, setBlogDetails }) {
 
   // sideEffect handling for like icon changing dynamically
   useEffect(() => {
-    const result = blogDetails?.likes?.some(
-      (like) => like.user._id === user._id
-    );
-    if (result) {
-      setKey(true);
+    if (user) {
+      const result = blogDetails?.likes?.some(
+        (like) => like?.user?._id === user._id
+      );
+      if (result) {
+        setKey(true);
+      } else {
+        setKey(false);
+      }
     } else {
-      setKey(false);
+      return;
     }
   }, [blogDetails]);
 
   return (
     <div className="flex gap-2 text-richblack-100 items-center">
-      <button
-        className={`text-3xl transition-all duration-200 transform ${
-          key ? "scale-125 animate-like" : "scale-100"
-        }`}
-        onClick={clickHandler}
-      >
-        {key ? (
-          <div>
-            <FcLike className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
-          </div>
+      {/* like icon */}
+      <div>
+        {user ? (
+          <button
+            className={`text-3xl transition-all duration-200 transform ${
+              key ? "scale-125 animate-like" : "scale-100"
+            }`}
+            onClick={clickHandler}
+          >
+            {key ? (
+              <div>
+                <FcLike className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
+              </div>
+            ) : (
+              <div>
+                <FcLikePlaceholder className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
+              </div>
+            )}
+          </button>
         ) : (
           <div>
-            <FcLikePlaceholder className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
+            <FcLikePlaceholder className=" text-3xl" />
           </div>
         )}
-      </button>
+      </div>
+      {/* like details */}
       <div className="text-lg flex gap-1 text-blue-100">
         <p>{blogDetails?.likes[0]?.user?.name} &</p>
         <button
@@ -59,6 +73,7 @@ function CreateLike({ blogId, blogDetails, setBlogDetails }) {
           {blogDetails?.totalLikes - 1} others
         </button>
       </div>
+      {/* likeDetails modal */}
       {likeModal && (
         <LikeModal blogDetails={blogDetails} setLikeModal={setLikeModal} />
       )}
