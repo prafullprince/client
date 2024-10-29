@@ -212,7 +212,7 @@ export async function increaseViews(blogId){
 
 
 // Like/unlike api
-export async function likeApis(blogId,token,dispatch){
+export async function likeApis(blogId,token){
     try {
         // fetch apiCall
         const result = await apiConnector("POST",blogEndpoints.CREATE_LIKE,{blogId},{
@@ -225,12 +225,9 @@ export async function likeApis(blogId,token,dispatch){
             return null;
         }
 
-        const { key,totalLikes,data } = result.data;
+        const { updatedBlog } = result.data;
 
-        dispatch(setLikeKey(key));
-        localStorage.setItem(`like_${blogId}`,JSON.stringify(key));
-
-        return {key,totalLikes,data};
+        return updatedBlog;
 
     } catch (error) {
         console.log(error);
@@ -253,11 +250,11 @@ export async function createComment(blogId,body,token){
             return null;
         }
         console.log(result.data);
-        const { totalComments } = result.data.updatedBlog;
+        const { updatedBlog } = result.data;
 
         toast.success("Comment Successfull");
 
-        return totalComments;
+        return updatedBlog;
 
     } catch (error) {
         console.log(error);

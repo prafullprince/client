@@ -203,14 +203,14 @@ function Navbar() {
                 setConfirmationModal({
                   text1: "Are you sure?",
                   text2: "Where you want to go",
-                  btn1Text: "Signup",
-                  btn2Text: "Login",
+                  btn1Text: "Register",
+                  btn2Text: "Instructions",
                   btn1Handler: () => {
                     navigate("/signup");
                     setConfirmationModal(null);
                   },
                   btn2Handler: () => {
-                    navigate("/login");
+                    navigate("/about");
                     setConfirmationModal(null);
                   },
                 });

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoMdSend } from "react-icons/io";
 import { createComment } from "../../service/apiCall/courseApiCall";
 
 function CreateComment({ blogId, setBlogDetails }) {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const [text, setText] = useState("");
 
@@ -15,8 +16,7 @@ function CreateComment({ blogId, setBlogDetails }) {
     e.preventDefault();
     const response = await createComment(blogId, text, token);
     console.log(response);
-    const { totalComments } = response;
-    console.log("comm", totalComments);
+    setBlogDetails(response);
     setText("");
   }
 

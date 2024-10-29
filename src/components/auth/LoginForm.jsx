@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "../../lib/utils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../service/apiCall/authApiCall";
 
@@ -11,16 +11,16 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   // state
-  const [formData,setFormData] = useState({
-    email:"",
-    password:"",
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
   });
 
   // changeHandler
-  function changeHandler(e){
-    setFormData((prev)=>({
+  function changeHandler(e) {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   }
 
@@ -28,9 +28,7 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    login(formData.email,formData.password,navigate,dispatch);
-
-
+    login(formData.email, formData.password, navigate, dispatch);
   };
 
   return (
@@ -45,24 +43,53 @@ export default function LoginForm() {
       <form className="mt-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-6">
           <Label htmlFor="email">Email Address</Label>
-          <Input className="bg-richblack-800 border-richblack-900" id="email" placeholder="projectmayhem@fc.com" type="email" name="email" value={formData.email} onChange={changeHandler} />
+          <Input
+            className="bg-richblack-800 border-richblack-900"
+            id="email"
+            placeholder="projectmayhem@fc.com"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={changeHandler}
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-6">
           <Label htmlFor="password">Password</Label>
-          <Input className="bg-richblack-800 border-richblack-900" id="password" placeholder="Enter your password here" type="password" name="password" value={formData.password} onChange={changeHandler} />
+          <Input
+            className="bg-richblack-800 border-richblack-900"
+            id="password"
+            placeholder="Enter your password here"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={changeHandler}
+          />
         </LabelInputContainer>
 
-        <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          type="submit"
-        >
-          Log in &rarr;
-          <BottomGradient />
-        </button>
+        <div className="flex items-center justify-center">
+          <button
+            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 flex items-center justify-center dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            type="submit"
+          >
+            Log in &rarr;
+            <BottomGradient />
+          </button>
+        </div>
 
         {/* <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" /> */}
-
       </form>
+      <Link
+        to={"/signup"}
+        className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 flex  gap-2 items-center justify-center mt-3 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+      >
+        <p className=" text-richblack-200 text-sm flex space-x-2">
+          have no account?{" "}
+        </p>
+        <p className=" text-blue-100">
+          Sign up
+          <BottomGradient />
+        </p>
+      </Link>
     </div>
   );
 }
@@ -76,10 +103,7 @@ const BottomGradient = () => {
   );
 };
 
-const LabelInputContainer = ({
-  children,
-  className,
-}) => {
+const LabelInputContainer = ({ children, className }) => {
   return (
     <div className={cn("flex flex-col space-y-2 w-full", className)}>
       {children}

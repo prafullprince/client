@@ -8,7 +8,7 @@ function CommentsModal({blogDetails,setCommentModal}) {
         {/* all comments */}
         <div className='flex flex-col gap-2'>
             {
-                blogDetails?.comments.length === 0 ? (<div>No comments yet</div>) : 
+                blogDetails?.comments?.length === 0 ? (<div>No comments yet</div>) : 
                 (
                     <div className='flex flex-col gap-5 w-full'>
                         {
@@ -16,12 +16,12 @@ function CommentsModal({blogDetails,setCommentModal}) {
                                 <div key={comment._id} className='flex gap-3 items-start max-w-[550px]'>
                                     {/* profile */}
                                     <div>
-                                      <img src={comment.user.image} className='w-8 h-8 rounded-full min-w-8' />
+                                      <img src={comment?.user?.image} className='w-8 h-8 rounded-full min-w-8' />
                                     </div>
                                     {/* name and body */}
                                     <div className='flex flex-col gap-[1px]'>
                                       <p className=' text-richblack-300 text-xs italic'>
-                                        <HighlightText text={comment.user.name} />
+                                        <HighlightText text={comment?.user?.name} />
                                       </p>
                                       <p className=' max-w-[400px] break-words break-all text-balance'>{comment?.body}</p>
                                     </div>

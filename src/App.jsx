@@ -15,6 +15,7 @@ import Setting from "./components/Dashboard/Setting/Setting";
 import BlogDetails from "./pages/BlogDetails";
 import BlogCategory from "./pages/BlogCategory";
 import CatalogPage from "./pages/CatalogPage";
+import Instruction from "./pages/Instruction";
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
         {/* <Route path="/blog/list?v=category" element={<BlogCategory />} /> */}
         <Route path="/blog/list" element={<BlogCategory />} />
         <Route path="/catalog/:catalogName" element={<CatalogPage />} />
-
+        <Route path="/about" element={<Instruction />} />
 
         {/* signup route */}
         <Route

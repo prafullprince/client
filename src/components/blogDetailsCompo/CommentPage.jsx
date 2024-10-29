@@ -3,8 +3,8 @@ import { getComment } from "../../service/apiCall/courseApiCall";
 import CommentsModal from "../common/CommentsModal";
 import HighlightText from "../common/HighlightText";
 
-function CommentPage({ blogId }) {
-  const [blogDetails, setBlogDetails] = useState(null);
+function CommentPage({ blogId,blogDetails }) {
+  // const [blogDetails, setBlogDetails] = useState(null);
   const [commentModal, setCommentModal] = useState(null);
 
   function modalHandler() {
@@ -12,14 +12,14 @@ function CommentPage({ blogId }) {
       blogDetails,
     });
   }
-
-  useEffect(() => {
-    async function getComments() {
-      const response = await getComment(blogId);
-      setBlogDetails(response);
-    }
-    getComments();
-  }, [blogId]);
+  console.log("fi",blogDetails)
+  // useEffect(() => {
+  //   async function getComments() {
+  //     const response = await getComment(blogId);
+  //     setBlogDetails(response);
+  //   }
+  //   getComments();
+  // }, [blogId]);
 
   return (
     <div className="lg:w-[60%] relative z-40">
