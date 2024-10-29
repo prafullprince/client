@@ -1,30 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { Link, useParams } from "react-router-dom";
 import {
   fetchAllBlogsDeatils,
-  likeApis,
 } from "../service/apiCall/courseApiCall";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { ShootingStars } from "../components/ui/shooting-stars";
 import { StarsBackground } from "../components/ui/stars-background";
 import Spinner from "../components/extraUi/Spinner";
-import { useDispatch, useSelector } from "react-redux";
 import CommentPage from "../components/blogDetailsCompo/CommentPage";
 import CreateComment from "../components/blogDetailsCompo/CreateComment";
 import CreateLike from "../components/blogDetailsCompo/CreateLike";
 
 function BlogDetails() {
+
+  // hook and state
   const { blogId } = useParams();
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
-
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  console.log("yes", blogDetails);
 
   // fetchBlogPageDetails
   useEffect(() => {

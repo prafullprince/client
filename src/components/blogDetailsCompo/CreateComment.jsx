@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { IoMdSend } from "react-icons/io";
 import { createComment } from "../../service/apiCall/courseApiCall";
 
 function CreateComment({ blogId, setBlogDetails }) {
+
+  // hooks and state
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
   const [text, setText] = useState("");
 
+  // createComment
   async function commentApi(e) {
     e.preventDefault();
     const response = await createComment(blogId, text, token);
-    console.log(response);
     setBlogDetails(response);
     setText("");
   }

@@ -8,22 +8,22 @@ function CreateLike({ blogId, blogDetails, setBlogDetails }) {
   // store
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
-  console.log(user);
+
   // state
   const [key, setKey] = useState(false);
   const [likeModal, setLikeModal] = useState(null);
 
+  // create like
   async function clickHandler() {
     const response = await likeApis(blogId, token);
-    console.log("like", response);
     setBlogDetails(response);
   }
-  console.log("key,key", key);
+
+  // sideEffect handling for like icon changing dynamically
   useEffect(() => {
     const result = blogDetails?.likes?.some(
       (like) => like.user._id === user._id
     );
-    console.log(result);
     if (result) {
       setKey(true);
     } else {
@@ -56,12 +56,12 @@ function CreateLike({ blogId, blogDetails, setBlogDetails }) {
             setLikeModal(blogDetails);
           }}
         >
-          {blogDetails?.totalLikes-1} others
+          {blogDetails?.totalLikes - 1} others
         </button>
       </div>
-      {
-        likeModal && <LikeModal blogDetails={blogDetails} setLikeModal={setLikeModal} />
-      }
+      {likeModal && (
+        <LikeModal blogDetails={blogDetails} setLikeModal={setLikeModal} />
+      )}
     </div>
   );
 }
