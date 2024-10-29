@@ -1,7 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 // import { useNavigate } from 'react-router-dom';
 
-function ConfirmationModal({modalData}) {
+function ConfirmationModal({modalData,setModalData}) {
+
+  // const btnRef = useRef(null);
+
+  // useEffect(() => {
+  //   let tid = setTimeout(
+  //     document.addEventListener("mousedown", () => {
+  //       if (btnRef.current && !btnRef.current.onClick) {
+  //         setModalData(null);
+  //       }
+  //     }),
+  //     200
+  //   );
+
+  //   return () => {
+  //     clearTimeout(tid);
+  //   };
+  // }, []);
+
 
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
