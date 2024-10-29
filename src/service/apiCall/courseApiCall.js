@@ -88,9 +88,8 @@ export async function createSubSection(body,blogId,sectionId,imageUrl,token,disp
             return toast.error("Category not fetched");
         }
 
-        console.log("updatedBlog is: ",result?.data?.updatedBlog)
         dispatch(setBlog(result?.data?.updatedBlog));
-        // localStorage.setItem("blog",JSON.stringify(result?.data?.updatedBlog));
+        localStorage.setItem("blog",JSON.stringify(result?.data?.updatedBlog));
         res = result?.data?.updatedBlog;
         toast.success("SubSection Created");
 

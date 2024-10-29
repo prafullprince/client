@@ -114,7 +114,7 @@ function BlogDetails() {
           </div>
           {/* nested content */}
           <div className=" w-full">
-            {blogDetails?.blogContent?.map((section, index) => (
+            {blogDetails?.blogContent?.map((section) => (
               <details className=" w-full" key={section?._id}>
                 <summary className="list-none flex justify-between cursor-pointer border border-[#424854] bg-[#2C333F] text-[#F1F2FF] font-medium px-4 py-3 transition-all duration-200 z-40">
                   <div className="flex items-center gap-2 w-full">
@@ -126,13 +126,13 @@ function BlogDetails() {
                   <div></div>
                 </summary>
                 <div>
-                  {section?.subSection?.map((subSec, index) => (
+                  {section?.subSection?.map((subSec) => (
                     <div
                       className="py-2 flex flex-col lg:flex-row gap-2 w-full"
                       key={subSec._id}
                     >
                       <img
-                        className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 h-[400px] aspect-auto"
+                        className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 max-h-[300px] max-w-[300px] aspect-auto"
                         src={subSec?.imageUrl}
                       />
                       <div className="lg:w-[100%] break-words py-2 relative">
