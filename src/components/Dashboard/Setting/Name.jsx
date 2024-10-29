@@ -22,6 +22,9 @@ function Name() {
 
   const submitHandler = async () => {
     const response = await updateProfileInfo(formData.names,formData.about,formData.contactNumber,formData.dateOfBirth,formData.gender,token,dispatch);
+    if(response){
+      setFormData(null);
+    }
   };
 
   function changeHandler(e) {

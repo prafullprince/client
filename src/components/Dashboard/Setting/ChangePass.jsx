@@ -25,7 +25,10 @@ function ChangePass() {
   }
 
   async function submitHandler(){
-    await changePassword(formData.oldPassword,formData.newPassword,formData.confirmNewPassword,token);
+    const response = await changePassword(formData.oldPassword,formData.newPassword,formData.confirmNewPassword,token);
+    if(response){
+      setFormData(null);
+    }
   }
 
 
