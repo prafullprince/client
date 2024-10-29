@@ -73,7 +73,7 @@ function BloggerDashboard() {
               (
                 <div className='grid lg:grid-cols-3 lg:gap-6 md:grid-cols-2 md:gap-3 gap-6'>
                   {
-                    posts.map((post)=>(
+                    posts?.map((post)=>(
                       <div key={post._id} className=' flex flex-col gap-1'>
                         <OverlayBlogCard blog={post} />
                         <button onClick={()=>{
