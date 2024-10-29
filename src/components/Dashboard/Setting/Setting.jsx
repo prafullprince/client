@@ -1,19 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import IconBtn from "../../common/IconBtn";
-import { FiEdit } from "react-icons/fi";
 import { FaCheck, FaEdit } from "react-icons/fa";
 import { updateProfilePic } from "../../../service/apiCall/profileApiCall";
-import { Link } from "react-router-dom";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
 import Name from "./Name";
 import ChangePass from "./ChangePass";
 
 
 function Setting() {
   // fetch data from store
-  const { user } = useSelector((state) => state.profile);
   const { image } = useSelector((state)=> state.profile);
   const { token } = useSelector((state)=> state.auth);
 

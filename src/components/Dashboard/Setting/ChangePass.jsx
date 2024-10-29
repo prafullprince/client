@@ -64,4 +64,4 @@ function ChangePass() {
   );
 }
 
-export default ChangePass;
+export default React.memo(ChangePass);
