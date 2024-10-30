@@ -3,11 +3,14 @@ import { IoMdAdd } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import AddSubSecModals from "./AddSubSecModals";
+import EditSubSectionModal from "./EditSubSectionModal";
 
 
 function NestedView({ blog, setSecToggle, setSecId }) {
   // state
   const [addSubSecModal, setAddSubSecModal] = useState(null);
+  const [editSubSectionModal,setEditSubSectionModal] = useState(null);
+
 
   return (
     <div className="relative">
@@ -16,7 +19,7 @@ function NestedView({ blog, setSecToggle, setSecId }) {
           <div>Blog not found</div>
         ) : (
           <div>
-            {blog.blogContent.map((section) => (
+            {blog?.blogContent?.map((section) => (
               <details key={section._id}>
                 {/* section */}
                 <summary className="border-b border-[#424854] bg-[#2C333F] px-4 py-3 cursor-pointer text-lg text-white list-none flex items-center justify-between">
@@ -53,7 +56,10 @@ function NestedView({ blog, setSecToggle, setSecId }) {
                           <p className=" text-richblack-100">{subSec?.body}</p>
                           <button
                             onClick={() => {
-                              
+                              setEditSubSectionModal({
+                                blogId:blog._id,
+                                subSectionId:subSec._id
+                              })
                             }}
                             className="text-base underline bg-richblack-900 py-1 rounded-lg justify-center text-yellow-50 flex items-center px-2 gap-1"
                           >
@@ -93,6 +99,11 @@ function NestedView({ blog, setSecToggle, setSecId }) {
           setAddSubSecModal={setAddSubSecModal}
         />
       )}
+      {
+        editSubSectionModal && (
+          <EditSubSectionModal editSubSectionModal={editSubSectionModal} setEditSubSectionModal={setEditSubSectionModal} />
+        )
+      }
     </div>
   );
 }

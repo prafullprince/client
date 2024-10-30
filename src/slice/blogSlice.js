@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    step: localStorage.getItem("step") ? JSON.parse(localStorage.getItem("step")) : 1,
-    blog: localStorage.getItem("blog") ? JSON.parse(localStorage.getItem("blog")) : null,
+    step: localStorage.getItem("step") && localStorage.getItem("step") !== "undefined"  ? JSON.parse(localStorage.getItem("step")) : 1,
+    blog: localStorage.getItem("blog") && localStorage.getItem("blog") !== "undefined" ? JSON.parse(localStorage.getItem("blog")) : null,
 }
 
 const blogSlice = createSlice({
@@ -18,5 +18,5 @@ const blogSlice = createSlice({
         }
     }
 });
-export const { setStep,setBlog,setLikeKey } = blogSlice.actions;
+export const { setStep,setBlog } = blogSlice.actions;
 export default blogSlice.reducer;

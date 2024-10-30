@@ -354,3 +354,31 @@ export async function editBloggerSection(blogId,sectionId,name,token,dispatch){
     toast.dismiss(tid);
     return res;
 }
+
+
+// editSubSection
+export async function editBloggerSubSection(blogId,subSectionId,body,imageUrl,token,dispatch){
+    const tid = toast.loading("Loading....");
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("PUT",blogEndpoints.EDIT_SUBSECTION,{blogId,subSectionId,body,imageUrl,token},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        console.log(result.data);
+        dispatch(setBlog(result.data.updateBlog));
+        localStorage.setItem("blog",JSON.stringify(result.data.updateBlog));
+        res = result.data.updateBlog;
+        toast.success("SubSection edited successfully");
+    } catch (error) {
+        console.log(error);
+    }
+    toast.dismiss(tid);
+    return res;
+}
