@@ -11,6 +11,7 @@ import Spinner from "../components/extraUi/Spinner";
 import CommentPage from "../components/blogDetailsCompo/CommentPage";
 import CreateComment from "../components/blogDetailsCompo/CreateComment";
 import CreateLike from "../components/blogDetailsCompo/CreateLike";
+import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 
 function BlogDetails() {
 
@@ -175,6 +176,7 @@ function BlogDetails() {
             </p>
           </div>
         </div>
+        <RatingAndReviewCards />
         <ShootingStars />
         <StarsBackground />
       </div>

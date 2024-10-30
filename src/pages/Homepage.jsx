@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchAllBlogs } from '../service/apiCall/courseApiCall';
 import { OverlayBlogCard } from '../components/common/OverlayBlogCard';
 import Spinner from '../components/extraUi/Spinner';
+import RatingAndReviewCards from '../components/common/RatingAndReviewCards';
 
 function Homepage() {
 
@@ -31,6 +32,7 @@ function Homepage() {
           }
         </div>
       </div>
+      <RatingAndReviewCards />
     </div>
   )
 }

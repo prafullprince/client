@@ -56,7 +56,6 @@ export async function createSection(name,blogId,token,dispatch){
             return toast.error("Category not fetched");
         }
 
-        console.log("updatedBlog is: ",result?.data?.updatedBlog)
         dispatch(setBlog(result?.data?.updatedBlog));
         localStorage.setItem("blog",JSON.stringify(result?.data?.updatedBlog));
         res = result?.data?.updatedBlog;
@@ -221,7 +220,7 @@ export async function likeApis(blogId,token){
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
-        console.log("first")
+
         // validation
         if(!result.data.success){
             return null;
@@ -245,12 +244,12 @@ export async function createComment(blogId,body,token){
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
-        console.log("first")
+
         // validation
         if(!result.data.success){
             return null;
         }
-        console.log(result.data);
+ 
         const { updatedBlog } = result.data;
 
         toast.success("Comment Successfull");
@@ -269,12 +268,12 @@ export async function getComment(blogId){
     try {
         // fetch apiCall
         const result = await apiConnector("POST",blogEndpoints.FETCH_POST_COMMENTS,{blogId});
-        console.log("first")
+
         // validation
         if(!result.data.success){
             return null;
         }
-        console.log(result.data);
+  
         res = result?.data?.data;
 
     } catch (error) {
@@ -293,12 +292,12 @@ export async function getBloggerPosts(status,token){
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
-        console.log("first");
+
         // validation
         if(!result.data.success){
             return null;
         }
-        console.log(result.data);
+
         res = result.data.data;
 
     } catch (error) {
@@ -343,7 +342,7 @@ export async function editBloggerSection(blogId,sectionId,name,token,dispatch){
         if(!result.data.success){
             return null;
         }
-        console.log(result.data);
+
         dispatch(setBlog(result.data.updatedBlog));
         localStorage.setItem("blog",JSON.stringify(result.data.updatedBlog));
         res = result.data.updatedBlog;
@@ -371,7 +370,7 @@ export async function editBloggerSubSection(blogId,subSectionId,body,imageUrl,to
         if(!result.data.success){
             return null;
         }
-        console.log(result.data);
+        
         dispatch(setBlog(result.data.updateBlog));
         localStorage.setItem("blog",JSON.stringify(result.data.updateBlog));
         res = result.data.updateBlog;
@@ -380,5 +379,24 @@ export async function editBloggerSubSection(blogId,subSectionId,body,imageUrl,to
         console.log(error);
     }
     toast.dismiss(tid);
+    return res;
+}
+
+
+// getAllRatingAndReviews
+export async function getAllRating(){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("GET",blogEndpoints.GET_ALL_RATING);
+
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        res = result.data.allReviews;
+    } catch (error) {
+        console.log(error);
+    }
     return res;
 }

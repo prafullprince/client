@@ -18,6 +18,7 @@ import CatalogPage from "./pages/CatalogPage";
 import Instruction from "./pages/Instruction";
 
 
+
 function App() {
   return (
     <div className="flex flex-col min-h-screen w-screen bg-richblack-900">
@@ -69,7 +70,6 @@ function App() {
         </Route>
 
       </Routes>
-
 
     </div>
   );

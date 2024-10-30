@@ -33,5 +33,6 @@ export const blogEndpoints = {
     FETCH_BLOGGER_POSTS: BASE_URL + "/blog/getBloggerPosts",
     FETCH_CATEGORY_BLOGS: BASE_URL + "/blog/getBlogsOfCategory",
     EDIT_SECTION: BASE_URL + "/blog/editSection",
-    EDIT_SUBSECTION: BASE_URL + "/blog/editSubSection"
+    EDIT_SUBSECTION: BASE_URL + "/blog/editSubSection",
+    GET_ALL_RATING: BASE_URL + "/blog/getAllRating"
 }

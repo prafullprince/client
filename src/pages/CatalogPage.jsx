@@ -6,6 +6,7 @@ import Header from "../components/CatalogPage/Header";
 import CatalogTab from "../components/CatalogPage/CatalogTab";
 import Slider from "../components/CatalogPage/Slider";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
+import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 
 function CatalogPage() {
   // hook
@@ -135,6 +136,7 @@ function CatalogPage() {
           </div>
         </div>
       </div>
+      <RatingAndReviewCards />
     </div>
   );
 }
