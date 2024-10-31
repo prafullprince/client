@@ -12,6 +12,9 @@ import CommentPage from "../components/blogDetailsCompo/CommentPage";
 import CreateComment from "../components/blogDetailsCompo/CreateComment";
 import CreateLike from "../components/blogDetailsCompo/CreateLike";
 import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
+import CreateRating from "../components/blogDetailsCompo/CreateRating";
+import RatingAndReviews from "../components/common/RatingAndReviews";
+
 
 function BlogDetails() {
 
@@ -59,6 +62,7 @@ function BlogDetails() {
               {blogDetails?.description}
             </p>
             {/* rating and reviews */}
+            <RatingAndReviews blogId={blogId} blogDetails={blogDetails} />
             {/* author name */}
             <p className="text-[#6e6f76] text-base mt-3">{`Created by ${blogDetails?.blogger?.name}`}</p>
             {/* time */}
@@ -156,6 +160,8 @@ function BlogDetails() {
         <div>
           <CommentPage blogDetails={blogDetails} blogId={blogId} />
         </div>
+        {/* Create Rating */}
+        <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />
         {/* author */}
         <div className="flex flex-col gap-4 mt-8 relative z-20">
           <p className="text-[#F1F2FF] font-semibold text-2xl shadow-sm shadow-blue-100 w-fit p-2">

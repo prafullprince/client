@@ -400,3 +400,48 @@ export async function getAllRating(){
     }
     return res;
 }
+
+
+// createRatingAndReview
+export async function createRatings(reviews, rating, blogId,token){
+    const tid = toast.loading("Loading....");
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.CREATE_RATING,{reviews,rating,blogId},{
+            "Content-Type":"multipart/form-data",
+            Authorization:`Bearer ${token}`
+        });
+
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        res = result.data.updatedBlog;
+        console.log(result.data.updateBlog);
+        toast.success("Rating Created");
+    } catch (error) {
+        console.log(error);
+    }
+    toast.dismiss(tid);
+    return res;
+}
+
+
+// avgRating
+export async function averageRating(blogId){
+    let res = null;
+    try {
+        // fetch apiCall
+        const result = await apiConnector("POST",blogEndpoints.AVG_RATING,{blogId});
+
+        // validation
+        if(!result.data.success){
+            return null;
+        }
+        res = result.data.AvgRating;
+    } catch (error) {
+        console.log(error);
+    }
+    return res;
+}
