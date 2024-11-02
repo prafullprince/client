@@ -145,6 +145,7 @@ export async function changePassword(
     // validation
     if (!result.data.success) {
       toast.error(result.data.message);
+      return;
     }
 
     // success response
@@ -152,5 +153,7 @@ export async function changePassword(
   } catch (error) {
     console.log(error);
   }
-  toast.dismiss(tid);
+  finally{
+    toast.dismiss(tid);
+  }
 }
