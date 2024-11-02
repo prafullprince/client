@@ -76,6 +76,7 @@ export async function login(email, password, navigate, dispatch) {
     // validation
     if (!result.data.success) {
       toast.error(result.data.message);
+      return;
     }
 
     // setToken
@@ -98,7 +99,9 @@ export async function login(email, password, navigate, dispatch) {
   } catch (error) {
     console.log(error);
   }
-  toast.dismiss(tid);
+  finally {
+    toast.dismiss(tid);
+  }
 }
 
 // logout
