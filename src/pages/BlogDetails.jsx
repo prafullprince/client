@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  fetchAllBlogsDeatils,
-} from "../service/apiCall/courseApiCall";
+import { fetchAllBlogsDeatils } from "../service/apiCall/courseApiCall";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { ShootingStars } from "../components/ui/shooting-stars";
@@ -15,9 +13,7 @@ import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 import CreateRating from "../components/blogDetailsCompo/CreateRating";
 import RatingAndReviews from "../components/common/RatingAndReviews";
 
-
 function BlogDetails() {
-
   // hook and state
   const { blogId } = useParams();
   const [blogDetails, setBlogDetails] = useState(null);
@@ -33,7 +29,6 @@ function BlogDetails() {
     }
     fetchBlogDetails();
   }, [blogId]);
-
 
   if (loading) return <Spinner />;
 
@@ -76,7 +71,11 @@ function BlogDetails() {
             {/* likes */}
             <div className="flex flex-col gap-3 mt-3">
               {/* likes */}
-              <CreateLike blogId={blogId} blogDetails={blogDetails} setBlogDetails={setBlogDetails} />
+              <CreateLike
+                blogId={blogId}
+                blogDetails={blogDetails}
+                setBlogDetails={setBlogDetails}
+              />
             </div>
           </div>
           {/* right */}
@@ -136,10 +135,20 @@ function BlogDetails() {
                       className="py-2 flex flex-col lg:flex-row gap-2 w-full"
                       key={subSec._id}
                     >
-                      <img
-                        className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 max-h-[300px] max-w-[300px] aspect-auto"
-                        src={subSec?.imageUrl}
-                      />
+                      {subSec.imageUrl.endsWith('.mp4') || subSec.imageUrl.endsWith('.webm') ? (
+                        <video
+                          className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 max-h-[300px] max-w-[300px] aspect-auto"
+                          src={subSec.imageUrl}
+                          controls // Optional: adds play/pause controls
+                          muted
+                        />
+                      ) : (
+                        <img
+                          className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 max-h-[300px] max-w-[300px] aspect-auto"
+                          src={subSec.imageUrl}
+                          alt="Content"
+                        />
+                      )}
                       <div className="lg:w-[100%] break-words py-2 relative">
                         <p className="px-4 mt-3 text-clip text-wrap text-[#C5C7D4] break-all">
                           {`->  `}
