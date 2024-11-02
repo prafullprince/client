@@ -80,7 +80,7 @@ function CatalogPage() {
             </h2>
             <div className="mt-1 grid gap-1 lg:grid-cols-2 2xl:grid-cols-3">
               {tenMostViewedOtherBlog?.map((blog) => (
-                <Link className=" w-full" to={`/blogDetails/${blog?._id}`}>
+                <Link className=" w-full" to={`/blogDetails/${blog?._id}`} key={blog._id}>
                   <CardContainer className="inter-var w-full">
                     <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                       <CardItem

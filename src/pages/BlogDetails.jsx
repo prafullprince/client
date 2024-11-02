@@ -110,7 +110,7 @@ function BlogDetails() {
         <div className="mt-12 flex flex-col gap-8 relative z-20">
           <div className="flex flex-col gap-3">
             <div className="text-white font-semibold text-2xl">
-              Course Content
+              Doc Content
             </div>
             <div className="text-[#C5C7D4] text-sm flex gap-2">
               {blogDetails?.totalSections} sections

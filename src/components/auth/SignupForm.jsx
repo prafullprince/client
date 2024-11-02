@@ -52,12 +52,12 @@ export default function SignupForm() {
     {
       id: 1,
       type: ACCOUNT_TYPE.VISITOR,
-      tabName: "Instructor",
+      tabName: "CodingHub",
     },
     {
       id: 2,
       type: ACCOUNT_TYPE.BLOGGER,
-      tabName: "Blogger",
+      tabName: "DocsHub",
     },
   ];
 
