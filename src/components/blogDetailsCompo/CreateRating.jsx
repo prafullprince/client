@@ -10,7 +10,7 @@ function CreateRating({blogId,setBlogDetails}) {
     const { image } = useSelector((state)=>state.profile);
 
   return (
-    <div className='z-50'>
+    <div className='z-30'>
         <button onClick={()=>{
             setRatingModal({
                 blogId
