@@ -3,6 +3,7 @@ import { Label } from "../../../ui/label";
 import { createSubSection } from "../../../../service/apiCall/courseApiCall";
 import { useDispatch, useSelector } from "react-redux";
 import { FileUpload } from "../../../ui/file-upload";
+import toast from "react-hot-toast";
 
 
 function AddSubSecModals({ addSubSecModal, setAddSubSecModal }) {
@@ -25,6 +26,10 @@ function AddSubSecModals({ addSubSecModal, setAddSubSecModal }) {
   // create subSection
   async function submitHandler(e) {
     e.preventDefault();
+    if(files.length === 0){
+      toast.error("Image not found");
+      return;
+    }
     await createSubSection(
       body,
       addSubSecModal.blogId,

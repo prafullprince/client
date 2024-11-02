@@ -23,6 +23,7 @@ export async function sendOtp(email, navigate) {
     navigate("/verify-email");
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
   toast.dismiss(tid);
 }
@@ -48,17 +49,13 @@ export async function signup(
       accountType,
       otp,
     });
-    console.log("signup", result.data.data);
-    // validation
-    if (!result.data.success) {
-      toast.error(result.data.message);
-    }
 
     // success response
     toast.success(result.data.message);
     navigate("/login");
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
   toast.dismiss(tid);
 }
@@ -72,12 +69,6 @@ export async function login(email, password, navigate, dispatch) {
       email,
       password,
     });
-
-    // validation
-    if (!result.data.success) {
-      toast.error(result.data.message);
-      return;
-    }
 
     // setToken
     dispatch(setToken(result.data.token));
@@ -98,6 +89,7 @@ export async function login(email, password, navigate, dispatch) {
     navigate("/dashboard/my-profile");
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
   finally {
     toast.dismiss(tid);
@@ -117,6 +109,7 @@ export async function logout(navigate, dispatch) {
     navigate("/login");
   } catch (error) {
     console.log(error);
+    toast.error(error.message);
   }
   toast.dismiss(tid);
 }

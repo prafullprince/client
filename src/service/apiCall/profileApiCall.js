@@ -19,11 +19,6 @@ export async function updateProfilePic(imageFile, token, dispatch) {
       }
     );
 
-    // validation
-    if (!result.data.success) {
-      toast.error(result.data.message);
-    }
-
     // setImage
     localStorage.setItem(
       "image",
@@ -41,6 +36,7 @@ export async function updateProfilePic(imageFile, token, dispatch) {
     toast.success("Profile Pic Updated");
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
   toast.dismiss(tid);
 }
@@ -61,11 +57,6 @@ export async function updateProfileInfo(name,about,contactNumber,dateOfBirth,gen
       }
     );
 
-    // validation
-    if (!result.data.success) {
-      toast.error(result.data.message);
-    }
-
     // setImage
     localStorage.setItem(
       "user",
@@ -79,8 +70,7 @@ export async function updateProfileInfo(name,about,contactNumber,dateOfBirth,gen
     toast.success("Profile Info Updated");
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
   toast.dismiss(tid);
 }
-
-

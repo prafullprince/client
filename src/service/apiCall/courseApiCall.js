@@ -32,6 +32,7 @@ export async function createBlog(name,description,whatYouWillLearn,category,thum
 
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
@@ -63,6 +64,7 @@ export async function createSection(name,blogId,token,dispatch){
 
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
@@ -94,6 +96,7 @@ export async function createSubSection(body,blogId,sectionId,imageUrl,token,disp
 
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
@@ -124,6 +127,7 @@ export async function publishBlog(blogId,status,token,dispatch){
 
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
 }
@@ -349,6 +353,7 @@ export async function editBloggerSection(blogId,sectionId,name,token,dispatch){
         toast.success("Section edited successfully");
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
@@ -377,6 +382,7 @@ export async function editBloggerSubSection(blogId,subSectionId,body,imageUrl,to
         toast.success("SubSection edited successfully");
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
@@ -422,6 +428,7 @@ export async function createRatings(reviews, rating, blogId,token){
         toast.success("Rating Created");
     } catch (error) {
         console.log(error);
+        toast.error(error.response.data.message);
     }
     toast.dismiss(tid);
     return res;
