@@ -7,7 +7,7 @@ import { FaRegStar } from "react-icons/fa";
 
 
 function RatingAndReviews({ blogDetails, blogId }) {
-  console.log(blogDetails);
+
   const [averageRatings, setAvereageRatings] = useState(0);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ function RatingAndReviews({ blogDetails, blogId }) {
     avRating();
   }, [blogDetails]);
 
-  console.log(averageRatings);
 
   return (
     <div className=" mt-2 w-full">
@@ -43,6 +42,9 @@ function RatingAndReviews({ blogDetails, blogId }) {
           })}
         </div>
         {/* no of user rated */}
+        <div className=" text-[#DBDDEA]">
+          ({blogDetails?.totalRatings} ratings)
+        </div>
       </div>
     </div>
   );
