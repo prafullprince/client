@@ -3,6 +3,7 @@ import Rating from './Rating'
 import { createRatings } from '../../service/apiCall/courseApiCall';
 import { useSelector } from 'react-redux';
 
+
 function RatingModal({setRatingModal,ratingModal,user,image,setBlogDetails}) {
 
     const [totalRating,setTotalRating] = useState(0);
@@ -18,7 +19,7 @@ function RatingModal({setRatingModal,ratingModal,user,image,setBlogDetails}) {
 
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-        <div className="max-w-[330px] w-[95%] lg:w-[80%] mx-auto rounded-lg border border-richblack-400 bg-richblack-800 px-6 py-4 flex flex-col gap-2">
+        <div className="max-w-[330px] w-[95%] lg:w-[80%] z-50 mx-auto rounded-lg border border-richblack-400 bg-richblack-800 px-6 py-4 flex flex-col gap-2">
             <div className=' text-xl text-yellow-100 font-medium'>Add Review</div>
             {/* user Profile */}
             <div className='flex flex-col gap-2 mt-3'>

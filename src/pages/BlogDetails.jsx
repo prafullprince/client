@@ -88,7 +88,7 @@ function BlogDetails() {
         </div>
       </div>
       {/* content */}
-      <div className="w-[90%] md:w-[80%] mx-auto flex flex-col gap-8 relative z-10">
+      <div className="w-[90%] md:w-[80%] mx-auto flex flex-col gap-8 relative z-0">
         {/* What you will Learn */}
         <div className="md:px-12 md:py-8 px-2 py-1 mt-16 border border-[#2C333F] w-fit shadow-sm shadow-blue-25 md:w-[60%] relative z-20">
           <div className="text-[#F1F2FF] font-medium text-3xl">
@@ -163,14 +163,14 @@ function BlogDetails() {
           </div>
         </div>
         {/* comment */}
-        <div className=" lg:w-[60%]">
+        <div className=" lg:w-[60%] z-30">
           <CreateComment setBlogDetails={setBlogDetails} blogId={blogId} />
         </div>
-        <div>
+        <div className=" z-30">
           <CommentPage blogDetails={blogDetails} blogId={blogId} />
         </div>
         {/* Create Rating */}
-        <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />
+          <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />
         {/* author */}
         <div className="flex flex-col gap-4 mt-8 relative z-20">
           <p className="text-[#F1F2FF] font-semibold text-2xl shadow-sm shadow-blue-100 w-fit p-2">

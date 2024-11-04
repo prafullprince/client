@@ -17,7 +17,7 @@ function RatingAndReviewCards() {
 
 
   return (
-    <div className="rounded-md mt-16 flex flex-col antialiased bg-white dark:bg-richblack-900 dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+    <div className="rounded-md z-20 mt-16 flex flex-col antialiased bg-white dark:bg-richblack-900 dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards
         items={ratings}
         direction="left"
