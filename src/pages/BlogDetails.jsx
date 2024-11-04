@@ -19,6 +19,8 @@ function BlogDetails() {
   const { blogId } = useParams();
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [toggleText,setToggleText] = useState(false);
+  
   console.log("blogDetails",blogDetails);
   // fetchBlogPageDetails
   useEffect(() => {
@@ -130,6 +132,7 @@ function BlogDetails() {
                   </div>
                   <div></div>
                 </summary>
+                {/* subSection */}
                 <div>
                   {section?.subSection?.map((subSec) => (
                     <div
@@ -153,7 +156,19 @@ function BlogDetails() {
                       <div className="lg:w-[100%] break-words py-2 relative">
                         <p className="px-4 mt-3 text-clip text-wrap text-[#C5C7D4] break-all">
                           {`->  `}
-                          {subSec?.body}
+                          {
+                            toggleText[subSec._id] ? (<span>{subSec?.body}</span>) : (<span>{subSec?.body.substring(0,600)}</span>)
+                          }
+                          <button className="ml-1" onClick={()=> {
+                            setToggleText((prev)=>({
+                              ...prev,
+                              [subSec._id]:!prev[subSec._id]
+                            }))
+                          }}>
+                            {
+                              toggleText[subSec._id] ? <span className=" text-blue-100 shadow-md shadow-blue-100">read less</span> : <span className=" text-blue-100 shadow-md shadow-blue-100">read more...</span>
+                            }
+                          </button>
                         </p>
                       </div>
                     </div>
