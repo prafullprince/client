@@ -13,12 +13,13 @@ import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 import CreateRating from "../components/blogDetailsCompo/CreateRating";
 import RatingAndReviews from "../components/common/RatingAndReviews";
 
+
 function BlogDetails() {
   // hook and state
   const { blogId } = useParams();
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  console.log("blogDetails",blogDetails);
   // fetchBlogPageDetails
   useEffect(() => {
     async function fetchBlogDetails() {
@@ -191,6 +192,7 @@ function BlogDetails() {
             </p>
           </div>
         </div>
+        {/* ratingAndReviews */}
         <RatingAndReviewCards />
         <ShootingStars />
         <StarsBackground />

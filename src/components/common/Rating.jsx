@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-function Rating({currentClickStar,setCurrentClickStar}) {
+function Rating({currentClickStar,setCurrentClickStar,textSize}) {
 
   return (
     <div className=" flex justify-center mt-3">
@@ -11,7 +11,7 @@ function Rating({currentClickStar,setCurrentClickStar}) {
           return (
             <FaStar
               key={index}
-              className={`cursor-pointer text-2xl ${currentClickStar > index ? " text-yellow-50" : " text-richblack-300"}`}
+              className={`cursor-pointer ${textSize ? "text-2xl" : ""} ${currentClickStar > index ? " text-yellow-50" : " text-richblack-300"}`}
               onClick={()=>setCurrentClickStar(currentStarValue)}
             />
           );
