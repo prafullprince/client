@@ -20,7 +20,7 @@ function AddBlog() {
   const steps = [
     {
       id: 1,
-      title: "Course Information",
+      title: "Course Info",
     },
     {
       id: 2,
@@ -57,7 +57,7 @@ function AddBlog() {
           </button>
         </header>
         {/* renderSteps */}
-        <nav className="relative flex justify-between w-full mx-2">
+        <nav className="relative flex justify-between w-full px-2">
           {steps.map((ste, index) => (
             <RenderStep ste={ste} key={index} />
           ))}

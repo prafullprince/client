@@ -157,7 +157,7 @@ function BlogDetails() {
                         <p className="px-4 mt-3 text-clip text-wrap text-[#C5C7D4] break-all">
                           {`->  `}
                           {
-                            toggleText[subSec._id] ? (<span>{subSec?.body}</span>) : (<span>{subSec?.body.substring(0,600)}</span>)
+                            toggleText[subSec._id] ? (<span>{subSec?.body}</span>) : (<span>{subSec?.body.substring(0,900)}</span>)
                           }
                           <button className="ml-1" onClick={()=> {
                             setToggleText((prev)=>({

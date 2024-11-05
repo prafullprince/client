@@ -24,11 +24,11 @@ function RenderStep({ ste }) {
         <div
           className={` ${
             ste.id === 1
-              ? "absolute w-[710%] border border-dashed border-richblack-400 right-0 top-[50%] translate-x-[100%]"
+              ? "absolute w-[300%] md:w-[580%] lg:w-[720%] border border-dashed border-richblack-400 right-0 top-[50%] translate-x-[100%]"
               : ""
           } ${
             ste.id === 2
-              ? "absolute w-[620%] border border-dashed right-0 border-richblack-400 top-[50%] translate-x-[100%]"
+              ? "absolute w-[280%] md:w-[580%] lg:w-[720%] border border-dashed right-0 border-richblack-400 top-[50%] translate-x-[100%]"
               : ""
           }`}
         ></div>
