@@ -183,7 +183,7 @@ function BlogDetails() {
           <CreateComment setBlogDetails={setBlogDetails} blogId={blogId} />
         </div>
         <div className=" z-30">
-          <CommentPage blogDetails={blogDetails} blogId={blogId} />
+          <CommentPage blogDetails={blogDetails} setBlogDetails={setBlogDetails} blogId={blogId} />
         </div>
         {/* Create Rating */}
           <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />

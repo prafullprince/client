@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getComment } from "../../service/apiCall/courseApiCall";
 import CommentsModal from "../common/CommentsModal";
 import HighlightText from "../common/HighlightText";
 
-function CommentPage({ blogId,blogDetails }) {
+
+function CommentPage({ blogId,blogDetails,setBlogDetails }) {
   // const [blogDetails, setBlogDetails] = useState(null);
   const [commentModal, setCommentModal] = useState(null);
 
@@ -12,14 +12,7 @@ function CommentPage({ blogId,blogDetails }) {
       blogDetails,
     });
   }
-  console.log("fi",blogDetails)
-  // useEffect(() => {
-  //   async function getComments() {
-  //     const response = await getComment(blogId);
-  //     setBlogDetails(response);
-  //   }
-  //   getComments();
-  // }, [blogId]);
+
 
   return (
     <div className="lg:w-[60%] relative z-40">
@@ -53,6 +46,7 @@ function CommentPage({ blogId,blogDetails }) {
         <CommentsModal
           blogDetails={blogDetails}
           setCommentModal={setCommentModal}
+          setBlogDetails={setBlogDetails}
         />
       )}
     </div>

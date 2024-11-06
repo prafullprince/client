@@ -36,5 +36,6 @@ export const blogEndpoints = {
     EDIT_SUBSECTION: BASE_URL + "/blog/editSubSection",
     GET_ALL_RATING: BASE_URL + "/blog/getAllRating",
     CREATE_RATING: BASE_URL + "/blog/createRating",
-    AVG_RATING: BASE_URL + "/blog/avgRating"
+    AVG_RATING: BASE_URL + "/blog/avgRating",
+    REPLY_COMMENT: BASE_URL + "/blog/replyComment"
 }
