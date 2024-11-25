@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { blogEndpoints } from "../api";
-import { setBlog, setStep } from "../../slice/blogSlice";
+import { setBlog, setBlogDetails, setStep } from "../../slice/blogSlice";
 
 // createBlog
 export async function createBlog(
@@ -200,7 +200,7 @@ export async function fetchAllBlogs() {
 }
 
 // Get All BlogsDetails
-export async function fetchAllBlogsDeatils(blogId) {
+export async function fetchAllBlogsDeatils(blogId,dispatch) {
   let res = null;
   try {
     // fetch apiCall
@@ -217,6 +217,9 @@ export async function fetchAllBlogsDeatils(blogId) {
 
     // update res
     res = result.data.blogDetails;
+    dispatch(setBlogDetails(res));
+    localStorage.setItem("blogDetails",JSON.stringify(res));
+    
   } catch (error) {
     console.log(error);
   }
@@ -269,6 +272,7 @@ export async function likeApis(blogId, token) {
 
 // comment apis
 export async function createComment(blogId, body, token) {
+  let tid = toast.loading("Loading....");
   try {
     // fetch apiCall
     const result = await apiConnector(
@@ -290,9 +294,11 @@ export async function createComment(blogId, body, token) {
 
     toast.success("Comment Successfull");
 
+    toast.dismiss(tid);
     return updatedBlog;
   } catch (error) {
     console.log(error);
+    toast.error(error.response.data.message);
   }
 }
 

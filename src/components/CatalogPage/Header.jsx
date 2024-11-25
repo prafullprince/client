@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header({category}) {
   console.log(category)
@@ -10,7 +11,7 @@ function Header({category}) {
         <div className="py-2 flex flex-col justify-center">
           {/* catalog route */}
           <div className="flex gap-2">
-            <p className=" text-sm text-[#838894]">Home / Catalog /</p>
+            <p className=" text-sm text-[#838894]"><Link to={"/"}>Home</Link> / Catalog /</p>
             <span className=" text-sm font-medium text-[#FFD60A]">{category?.name}</span>
           </div>
           {/* categoryName */}

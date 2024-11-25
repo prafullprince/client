@@ -47,17 +47,17 @@ function CreateLike({ blogId, blogDetails, setBlogDetails }) {
             onClick={clickHandler}
           >
             {key ? (
-              <div>
+              <div className={`${token ? "opacity-100" : " opacity-50"}`}>
                 <FcLike className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
               </div>
             ) : (
-              <div>
+              <div className={`${token ? "opacity-100" : " opacity-50"}`}>
                 <FcLikePlaceholder className="transition-opacity duration-300 ease-in-out opacity-100 text-3xl" />
               </div>
             )}
           </button>
         ) : (
-          <div>
+          <div className={`${token ? "opacity-100" : " opacity-50"}`}>
             <FcLikePlaceholder className=" text-3xl" />
           </div>
         )}

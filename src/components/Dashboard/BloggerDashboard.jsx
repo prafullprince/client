@@ -47,14 +47,24 @@ function BloggerDashboard() {
   }, [status]);
 
   return (
-    <div className="text-white">
+    <div className="text-white flex flex-col gap-4">
+      {/* profile details */}
+      <div className="">
+        <div className="w-11/12 mx-auto">
+          {/* content */}
+          <div className="flex gap-4">
+            {/* profileImage */}
+            
+          </div>
+        </div>
+      </div>
       {/* content */}
       <div className="flex flex-col gap-4">
         <div className=" text-xl">
           <HighlightText text={"Your Posts"} />
         </div>
         {/* tab */}
-        <div className=" w-11/12 mx-auto">
+        <div className="w-11/12 mx-auto">
           <Tab field={status} setField={setStatus} tabData={tabData} />
         </div>
         {/* all post */}

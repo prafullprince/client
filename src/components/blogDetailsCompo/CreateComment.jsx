@@ -4,6 +4,7 @@ import { Label } from "../../components/ui/label";
 import { useSelector } from "react-redux";
 import { IoMdSend } from "react-icons/io";
 import { createComment } from "../../service/apiCall/courseApiCall";
+import logoCommnet from "../../assets/Images/aboutus2.webp";
 
 function CreateComment({ blogId, setBlogDetails }) {
 
@@ -27,7 +28,9 @@ function CreateComment({ blogId, setBlogDetails }) {
       </div>
       <div className="mt-1 flex gap-2 items-center w-full">
         <div className=" max-w-[20%]">
-          <img src={user?.image} className=" w-8 h-8 rounded-full min-w-8" />
+          {
+            token ? (<img src={user?.image} className=" w-8 h-8 rounded-full min-w-8" />) : (<img src={logoCommnet} className=" w-8 h-8 rounded-full min-w-8" />)
+          }
         </div>
         <form
           onSubmit={commentApi}
@@ -57,7 +60,6 @@ function CreateComment({ blogId, setBlogDetails }) {
                 className="flex-1 border-none focus:ring-0 outline-none resize-none p-2 bg-richblack-900 w-full md:min-w-[500px] sm:min-w-[500px] lg:min-w-[500px] 2xl:min-w-[800px] text-richblack-50"
                 placeholder="Please signin to, add a comment..."
                 disabled
-                
               />
               {text.length > 0 ? (
                 <button type="submit">

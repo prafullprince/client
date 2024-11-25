@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import OpenRoute from "./components/auth/OpenRoute";
 import SignupPage from "./pages/SignupPage";
@@ -16,10 +16,41 @@ import BlogDetails from "./pages/BlogDetails";
 import BlogCategory from "./pages/BlogCategory";
 import CatalogPage from "./pages/CatalogPage";
 import Instruction from "./pages/Instruction";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 
 
 function App() {
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+
+    if(token){
+      try {
+        const decode = jwtDecode(token);
+        const currentTime = Date.now()/1000;
+
+        if(decode.exp < currentTime ){
+          localStorage.removeItem("token");
+          navigate("/login");
+        }
+        else{
+          let diff = decode.exp - currentTime;
+          setTimeout(()=>{
+            localStorage.removeItem("token");
+            navigate("/login");
+          },diff)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  },[])
+
+  
   return (
     <div className="flex flex-col min-h-screen w-screen bg-richblack-900">
       <Navbar />

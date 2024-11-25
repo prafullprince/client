@@ -12,6 +12,7 @@ import CreateLike from "../components/blogDetailsCompo/CreateLike";
 import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 import CreateRating from "../components/blogDetailsCompo/CreateRating";
 import RatingAndReviews from "../components/common/RatingAndReviews";
+import { useDispatch } from "react-redux";
 
 
 function BlogDetails() {
@@ -20,13 +21,15 @@ function BlogDetails() {
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [toggleText,setToggleText] = useState(false);
+  const dispatch = useDispatch();
+
   
   console.log("blogDetails",blogDetails);
   // fetchBlogPageDetails
   useEffect(() => {
     async function fetchBlogDetails() {
       setLoading(true);
-      const response = await fetchAllBlogsDeatils(blogId);
+      const response = await fetchAllBlogsDeatils(blogId,dispatch);
       setBlogDetails(response);
       setLoading(false);
     }
@@ -45,7 +48,7 @@ function BlogDetails() {
           <div className="flex flex-col lg:w-[80%]">
             {/* path */}
             <div className="flex text-[#838894] text-base gap-1 items-center">
-              Home / Blog /{" "}
+              <Link to={"/"}>Home</Link> / Blog /{" "}
               <span className="text-sm md:text-base text-[#FFD60A] md:font-medium">
                 {blogDetails?.category?.name}
               </span>

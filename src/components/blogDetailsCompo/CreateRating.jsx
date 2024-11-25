@@ -8,9 +8,10 @@ function CreateRating({blogId,setBlogDetails}) {
 
     const { user } = useSelector((state)=>state.profile);
     const { image } = useSelector((state)=>state.profile);
+    const { token } = useSelector((state)=>state.auth);
 
   return (
-    <div className={`${ratingModal ? " z-50" : " z-20"}`}>
+    <div className={`${ratingModal ? " z-50" : " z-20"} ${token ? "" : " pointer-events-none opacity-50"}`}>
         <button onClick={()=>{
             setRatingModal({
                 blogId

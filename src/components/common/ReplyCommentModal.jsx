@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import HighlightText from "./HighlightText";
-import { LuReplyAll } from "react-icons/lu";
-import { Input } from "../ui/input";
-import { replyComment } from "../../service/apiCall/courseApiCall";
-import { useSelector } from "react-redux";
 
-function ReplyCommentModal({ setReplyCommentModal,blogDetails,replyCommentModal }) {
+
+function ReplyCommentModal({ setReplyCommentModal,replyCommentModal }) {
 
 
   return (
