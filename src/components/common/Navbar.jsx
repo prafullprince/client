@@ -70,7 +70,7 @@ function Navbar() {
 
   return (
     <div
-      className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 transition-all duration-200`}
+      className={`flex h-12 lg:h-14 items-center justify-center border-b-[1px] border-b-richblack-700 transition-all duration-200`}
     >
       <div className="flex w-[90%] md:w-[80%] mx-auto items-center justify-between">
         {/* Logo */}

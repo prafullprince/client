@@ -1,7 +1,8 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
-import { blogEndpoints } from "../api";
+import { blogEndpoints, userEndPoints } from "../api";
 import { setBlog, setBlogDetails, setStep } from "../../slice/blogSlice";
+import { setUserDetails } from "../../slice/profileSlice";
 
 // createBlog
 export async function createBlog(
@@ -550,3 +551,64 @@ export async function replyComment(blogId, token, commentId, replyText) {
   toast.dismiss(tid);
   return res;
 }
+
+// follow
+export async function followApi(toUserId, dispatch, token) {
+  const tid = toast.loading("Loading....");
+  try {
+    // fetch apiCall
+    const result = await apiConnector(
+      "POST",
+      userEndPoints.FOLLOW,
+      { toUserId },
+      {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    // validation
+    if (!result.data.success) {
+      return null;
+    }
+    
+    // setData in store
+    dispatch(setUserDetails(result.data.updatedUserFrom));
+
+    localStorage.setItem("users",JSON.stringify(result.data.updatedUserFrom));
+
+    toast.success(result.data.message);
+  } catch (error) {
+    console.log(error);
+    toast.error(error.response.data.message);
+  }
+  toast.dismiss(tid);
+}
+
+// userDetails
+// export async function userDetailsApi(token) {
+//   let res = null;
+//   const tid = toast.loading("Loading....");
+//   try {
+//     // fetch apiCall
+//     const result = await apiConnector(
+//       "POST",
+//       blogEndpoints.REPLY_COMMENT,
+//       {
+//         "Content-Type": "multipart/form-data",
+//         Authorization: `Bearer ${token}`,
+//       }
+//     );
+
+//     // validation
+//     if (!result.data.success) {
+//       return null;
+//     }
+//     res = result.data.updatedBlog;
+//   } catch (error) {
+//     console.log(error);
+//     toast.error(error.response.data.message);
+//   }
+//   toast.dismiss(tid);
+//   return res;
+// }

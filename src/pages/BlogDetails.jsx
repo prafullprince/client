@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchAllBlogsDeatils } from "../service/apiCall/courseApiCall";
+import {
+  fetchAllBlogsDeatils,
+  followApi,
+} from "../service/apiCall/courseApiCall";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { ShootingStars } from "../components/ui/shooting-stars";
@@ -12,24 +15,34 @@ import CreateLike from "../components/blogDetailsCompo/CreateLike";
 import RatingAndReviewCards from "../components/common/RatingAndReviewCards";
 import CreateRating from "../components/blogDetailsCompo/CreateRating";
 import RatingAndReviews from "../components/common/RatingAndReviews";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { IoMdPersonAdd } from "react-icons/io";
+import { MdPlaylistRemove } from "react-icons/md";
 
 
 function BlogDetails() {
+  // store
+  const { userDetails } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  console.log("first",userDetails);
+
   // hook and state
   const { blogId } = useParams();
   const [blogDetails, setBlogDetails] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [toggleText,setToggleText] = useState(false);
+  const [toggleText, setToggleText] = useState(false);
   const dispatch = useDispatch();
 
-  
-  console.log("blogDetails",blogDetails);
+  async function followClickHandler() {
+    await followApi(blogDetails?.blogger?._id, dispatch, token);
+  }
+
+  console.log("blogDetails", blogDetails);
   // fetchBlogPageDetails
   useEffect(() => {
     async function fetchBlogDetails() {
       setLoading(true);
-      const response = await fetchAllBlogsDeatils(blogId,dispatch);
+      const response = await fetchAllBlogsDeatils(blogId, dispatch);
       setBlogDetails(response);
       setLoading(false);
     }
@@ -83,6 +96,21 @@ function BlogDetails() {
                 setBlogDetails={setBlogDetails}
               />
             </div>
+            {/* follow */}
+            <div>
+              <button
+                onClick={followClickHandler}
+                className={`mt-6`}
+              >
+                {userDetails?.following?.some((user)=> user._id === blogDetails?.blogger?._id) ? (<div className="bg-[#31383b] px-4 py-2 text-lg rounded-lg flex items-center gap-1 hover:opacity-80 transition-all duration-200">
+                  <MdPlaylistRemove className=" text-2xl" />
+                  <p>Following</p>
+                </div>) : (<div className="bg-[#2b89b2] px-4 py-2 text-lg rounded-lg flex items-center gap-[6px] hover:opacity-80 transition-all duration-200">
+                  <IoMdPersonAdd className=" text-lg" />
+                  <p>Follow</p>
+                </div>) }
+              </button>
+            </div>
           </div>
           {/* right */}
           <div className="flex lg:justify-end rounded-lg">
@@ -115,9 +143,7 @@ function BlogDetails() {
         {/* Blog Content */}
         <div className="mt-12 flex flex-col gap-8 relative z-20">
           <div className="flex flex-col gap-3">
-            <div className="text-white font-semibold text-2xl">
-              Doc Content
-            </div>
+            <div className="text-white font-semibold text-2xl">Doc Content</div>
             <div className="text-[#C5C7D4] text-sm flex gap-2">
               {blogDetails?.totalSections} sections
             </div>
@@ -142,7 +168,8 @@ function BlogDetails() {
                       className="py-2 flex flex-col lg:flex-row gap-2 w-full"
                       key={subSec._id}
                     >
-                      {subSec.imageUrl.endsWith('.mp4') || subSec.imageUrl.endsWith('.webm') ? (
+                      {subSec.imageUrl.endsWith(".mp4") ||
+                      subSec.imageUrl.endsWith(".webm") ? (
                         <video
                           className="rounded-lg shadow-md drop-shadow-lg shadow-caribbeangreen-200 lg:w-[50%] ml-2 max-h-[300px] max-w-[300px] aspect-auto"
                           src={subSec.imageUrl}
@@ -159,18 +186,29 @@ function BlogDetails() {
                       <div className="lg:w-[100%] break-words py-2 relative">
                         <p className="px-4 mt-3 text-clip text-wrap text-[#C5C7D4] break-all">
                           {`->  `}
-                          {
-                            toggleText[subSec._id] ? (<span>{subSec?.body}</span>) : (<span>{subSec?.body.substring(0,900)}</span>)
-                          }
-                          <button className="ml-1" onClick={()=> {
-                            setToggleText((prev)=>({
-                              ...prev,
-                              [subSec._id]:!prev[subSec._id]
-                            }))
-                          }}>
-                            {
-                              toggleText[subSec._id] ? <span className=" text-blue-100 shadow-md shadow-blue-100">read less</span> : <span className=" text-blue-100 shadow-md shadow-blue-100">read more...</span>
-                            }
+                          {toggleText[subSec._id] ? (
+                            <span>{subSec?.body}</span>
+                          ) : (
+                            <span>{subSec?.body.substring(0, 900)}</span>
+                          )}
+                          <button
+                            className="ml-1"
+                            onClick={() => {
+                              setToggleText((prev) => ({
+                                ...prev,
+                                [subSec._id]: !prev[subSec._id],
+                              }));
+                            }}
+                          >
+                            {toggleText[subSec._id] ? (
+                              <span className=" text-blue-100 shadow-md shadow-blue-100">
+                                read less
+                              </span>
+                            ) : (
+                              <span className=" text-blue-100 shadow-md shadow-blue-100">
+                                read more...
+                              </span>
+                            )}
                           </button>
                         </p>
                       </div>
@@ -186,10 +224,14 @@ function BlogDetails() {
           <CreateComment setBlogDetails={setBlogDetails} blogId={blogId} />
         </div>
         <div className=" z-30">
-          <CommentPage blogDetails={blogDetails} setBlogDetails={setBlogDetails} blogId={blogId} />
+          <CommentPage
+            blogDetails={blogDetails}
+            setBlogDetails={setBlogDetails}
+            blogId={blogId}
+          />
         </div>
         {/* Create Rating */}
-          <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />
+        <CreateRating setBlogDetails={setBlogDetails} blogId={blogId} />
         {/* author */}
         <div className="flex flex-col gap-4 mt-8 relative z-20">
           <p className="text-[#F1F2FF] font-semibold text-2xl shadow-sm shadow-blue-100 w-fit p-2">

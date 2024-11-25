@@ -39,3 +39,8 @@ export const blogEndpoints = {
     AVG_RATING: BASE_URL + "/blog/avgRating",
     REPLY_COMMENT: BASE_URL + "/blog/replyComment"
 }
+
+export const userEndPoints = {
+    FOLLOW: BASE_URL + "/blog/follow",
+    USER_DETAILS: BASE_URL + "/blog/userDetails"
+}

@@ -25,30 +25,30 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
+  // useEffect(()=>{
+  //   const token = localStorage.getItem("token");
 
-    if(token){
-      try {
-        const decode = jwtDecode(token);
-        const currentTime = Date.now()/1000;
+  //   if(token){
+  //     try {
+  //       const decode = jwtDecode(token);
+  //       const currentTime = Date.now()/1000;
 
-        if(decode.exp < currentTime ){
-          localStorage.removeItem("token");
-          navigate("/login");
-        }
-        else{
-          let diff = decode.exp - currentTime;
-          setTimeout(()=>{
-            localStorage.removeItem("token");
-            navigate("/login");
-          },diff)
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  },[])
+  //       if(decode.exp < currentTime ){
+  //         localStorage.removeItem("token");
+  //         navigate("/login");
+  //       }
+  //       else{
+  //         let diff = decode.exp - currentTime;
+  //         setTimeout(()=>{
+  //           localStorage.removeItem("token");
+  //           navigate("/login");
+  //         },diff)
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // },[])
 
   
   return (

@@ -4,6 +4,7 @@ import profileSlice from "./profileSlice";
 import blogSlice from "./blogSlice";
 import searchSlice from "./searchSlice";
 
+
 export const store = configureStore({
     reducer:{
         auth:authSlice,
